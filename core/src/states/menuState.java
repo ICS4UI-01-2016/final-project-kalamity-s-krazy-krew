@@ -2,4 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package States;
+package states;
+
+/**
+ *
+ * @author malcr1272
+ */
+public class menuState {
+    
+}
