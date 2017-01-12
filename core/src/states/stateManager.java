@@ -20,32 +20,34 @@ public class stateManager {
      * @param args the command line arguments
      */
     
-    private Stack<State> states;
+    private Stack<state> states;
 
     public stateManager() {
-        states = new Stack<State>();
+        states = new Stack<state>();
     }
 
-    public void push(State s) {
+    public void push(state s) {
         states.push(s);
     }
 
     public void pop() {
     state s = states.pop();
     s.dispose();
-        
     }
 
-    public void set(State s) {
+    public void set(state s) {
+    pop();
+    push(s);
         
     }
 
     public void update(float deltaTime) {
+    states.peek().update(deltaTime);
         
     }
 
     public void render(SpriteBatch batch) {
-        
+        states.peek().render(batch);        
     }
 
     public void handleInput() {

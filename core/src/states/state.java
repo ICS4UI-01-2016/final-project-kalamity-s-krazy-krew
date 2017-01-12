@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector3;
  *
  * @author malcr1272
  */
-public class state {
+public abstract class state {
     private OrthographicCamera cam;
     private stateManager stateManager;
     
