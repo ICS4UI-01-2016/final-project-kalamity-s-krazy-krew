@@ -25,14 +25,14 @@ public class playState extends state {
     private int score;
     private BitmapFont font;
     
-    public playState(stateManager sm){
-        
-        super(sm);
-        setCameraView(MonkeyMania.WIDTH / 2, MonkeyMania.HEIGHT / 2);
-        monkey = new Monkey(100,400); 
-        background = new Texture("bg.png");
-        moveCameraY(monkey.getY() + CAM_Y_OFFSET);
+//    public playState(stateManager sm){
+//        
+//        super(sm);
+////        setCameraView(MonkeyMania.WIDTH / 2, MonkeyMania.HEIGHT / 2);
+////        monkey = new Monkey(100,400); 
+////        background = new Texture("bg.png");
+////        moveCameraY(monkey.getY() + CAM_Y_OFFSET);
         
     }
     
-}
+
