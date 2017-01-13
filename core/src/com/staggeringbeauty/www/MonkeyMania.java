@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import states.stateManager;
+import states.menuState;
+import states.state;
 
 public class MonkeyMania extends ApplicationAdapter {
     
@@ -22,8 +24,8 @@ public class MonkeyMania extends ApplicationAdapter {
         img = new Texture("Space.jpg");
         
         stateManager = new stateManager();
-        state firstScreen = new menuState(stateManager);
-        stateManager.push(firstScreen);  // load the first screen
+//        menuState firstScreen = new menuState(stateManager);
+//        stateManager.push(firstScreen);  // load the first screen
     }
     
     // game loop
@@ -45,4 +47,3 @@ public class MonkeyMania extends ApplicationAdapter {
         img.dispose();
     }
 }
-
