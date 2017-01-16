@@ -24,11 +24,11 @@ public class menuState extends State{
     
     //menu state constructor
     public menuState(StateManager gsm){
-        //super(gsm);
+        super(gsm);
         background = new Texture("space.jpg");
         //button = new Texture();
-        //setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
-        //setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
+        setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
+        setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
         
         Preferences pref = Gdx.app.getPreferences("highscore");
         highScore = pref.getInteger("highscore", 0);
