@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector3;
  *
  * @author farrb0382
  */
-public class State {
+public abstract class State {
 
     private OrthographicCamera cam;
     private StateManager stateManager;
@@ -23,6 +23,11 @@ public class State {
         cam = new OrthographicCamera();
     }
 
+    public abstract void render(SpriteBatch batch);
+    public abstract void update(float deltaTime);
+    public abstract void handleInput();
+    public abstract void dispose();
+    
     public StateManager getStateManager() {
         return stateManager;
     }

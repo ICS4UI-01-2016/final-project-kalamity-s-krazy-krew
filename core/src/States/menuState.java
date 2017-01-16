@@ -14,7 +14,7 @@ import com.mygdx.game.MyGdxGame;
  *
  * @author preej0747
  */
-public class menuState extends State{
+public abstract class menuState extends State{
     
     //private textures
     private Texture background;
