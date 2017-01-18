@@ -18,7 +18,7 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void create() {
         batch = new SpriteBatch();
-        img = new Texture("shaq.jpg");
+        img = new Texture("space.jpg");
         
 //        stateManager = new stateManager();
 //        menuState firstScreen = new menuState(stateManager);
