@@ -17,7 +17,7 @@ public class jumpPad {
     private final float padPosX = (int) (0 + Math.random() * (480 - 0 + 1));
     private final float padPosY = (int) Math.random();
     private final float height = 25;
-    public static final float width = 50;
+    public static final float WIDTH = 50;
     public boolean hasPassed;
     
     //import pad texture
