@@ -14,7 +14,7 @@ import com.mygdx.game.jumpPad;
  *
  * @author farrb0382
  */
-public class PlayState extends State{
+public class PlayState extends State {
     private Monkey monkey;
     private jumpPad[] jumppad;
     private Texture space;
@@ -61,13 +61,25 @@ public class PlayState extends State{
 
     @Override
     public void update(float deltaTime) {
+        
+        monkey.update(deltaTime);
+        moveCameraY(monkey.getY() + CAM_Y_OFFSET);
+        
+        if (monkey.getY() <= 0) {
+            // end the game
+            StateManager gsm = getStateManager();
+            // pop off the game screen 
+            gsm.pop();
+        }
     }
 
     @Override
     public void handleInput() {
+        
     }
 
     @Override
     public void dispose() {
+        
     }
 }
