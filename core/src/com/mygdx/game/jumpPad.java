@@ -19,31 +19,32 @@ public class jumpPad {
     private final float height = 25;
     public static final float width = 50;
     public boolean hasPassed;
+    
     //import pad texture
     private Texture jumppad;
-
+    
     //pad constructor
     public jumpPad(float x) {
         hasPassed = false;
     }
-
+    
     //methods needed in order to run the jump pads
     public void render(SpriteBatch batch) {
         batch.draw(jumppad, padPosX, padPosY);
     }
-
+    
     public float getX() {
         return padPosX;
     }
-
+    
     public float getY() {
         return padPosY;
     }
-
+    
     public boolean hasPassed() {
         return hasPassed;
     }
-
+    
     public void pass() {
         hasPassed = true;
     }
