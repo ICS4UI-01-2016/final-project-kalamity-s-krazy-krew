@@ -25,7 +25,7 @@ public class Monkey {
     
     public Monkey(int x, int y){
        position = new Vector3 (x,y,0);
-       velocity = new Vector3 (movement,0,0);
+       velocity = new Vector3 (0,movement,0);
        monkeypic = new Texture("MonkeyTest.png");
        hitbox = new Rectangle(position.x, position.y, monkeypic.getWidth(), monkeypic.getHeight());
     }
