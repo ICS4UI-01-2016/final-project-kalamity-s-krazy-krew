@@ -26,7 +26,7 @@ public class menuState extends State {
     //menu state constructor
     public menuState(StateManager gsm) {
         super(gsm);
-        background = new Texture("ms.jpg");
+        bg = new Texture("ms.jpg");
         //button = new Texture();
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);

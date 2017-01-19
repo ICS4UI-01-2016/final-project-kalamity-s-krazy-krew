@@ -21,7 +21,7 @@ public class PlayState extends State {
     private Texture space;
     
     private final float CAM_Y_OFFSET = 30;
-    private final float JUMPPAD_GAP_AMOUNT = 2;
+    private final float JUMPPAD_GAP_AMOUNT = 0;
 
     public PlayState(StateManager sm){
         super(sm);
