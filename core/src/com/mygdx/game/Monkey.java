@@ -23,8 +23,8 @@ public class Monkey {
     private final float gravity = -10;
     private final float movement = 100;
     
-    public Monkey(int x, int y){
-       position = new Vector3 (x,y,0);
+    public Monkey(int x, int HEIGHT){
+       position = new Vector3 (x,HEIGHT,0);
        velocity = new Vector3 (movement,0,0);
        monkeypic = new Texture("MonkeyTest.png");
        hitbox = new Rectangle(position.x, position.y, monkeypic.getWidth(), monkeypic.getHeight());
@@ -46,6 +46,7 @@ public class Monkey {
         //set hitbox
         hitbox.setPosition(position.x, position.y);       
     }
+    
     public void render(SpriteBatch batch){
         batch.draw(monkeypic, position.x, position.y);
     }

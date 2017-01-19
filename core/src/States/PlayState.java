@@ -70,7 +70,7 @@ public class PlayState extends State {
             // end the game
             StateManager gsm = getStateManager();
             // pop off the game screen 
-            gsm.pop();
+//            gsm.pop();
         }
     }
 
