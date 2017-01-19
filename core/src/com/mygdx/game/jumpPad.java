@@ -72,25 +72,25 @@ public class jumpPad {
         jumppad.dispose();
     }
 
-
-    public void setY(float y) {
-        hasPassed = false;
-        position.y = y;
-        float x = (int) (Math.random() * (325 - 75 + 1) + 75);
-        position.x = x;
-        bounds.setPosition(position.x, position.y);
-    }
-
-    public boolean collides(Monkey b) {
-        if (bounds.overlaps(b.getHitBox())) {
-            return true;
-        }
-        return false;
-    }
-
-    public void dispose() {
-        jumppad.dispose();
-    }
+//
+//    public void setY(float y) {
+//        hasPassed = false;
+//        position.y = y;
+//        float x = (int) (Math.random() * (325 - 75 + 1) + 75);
+//        position.x = x;
+//        bounds.setPosition(position.x, position.y);
+//    }
+//
+//    public boolean collides(Monkey b) {
+//        if (bounds.overlaps(b.getHitBox())) {
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    public void dispose() {
+//        jumppad.dispose();
+//    }
 
     public boolean hasPassed() {
         return hasPassed;
