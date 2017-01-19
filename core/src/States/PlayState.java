@@ -29,14 +29,7 @@ public class PlayState extends State {
         monkey = new Monkey(50,200);
         space = new Texture("space.jpg");
         
-        moveCameraY(monkey.getY() + CAM_Y_OFFSET);
-        
-//        jumppad = new jumpPad[3];
-////       for(int i = 0; i < jumpPad.WIDTH; i++){
-////            jumppad[i] = new jumpPad(200 + JUMPPAD_GAP_AMOUNT*jumpPad.WIDTH*i);
-////        }
-        
-        
+        moveCameraY(monkey.getY() + CAM_Y_OFFSET);      
         
     }
     @Override
@@ -50,10 +43,6 @@ public class PlayState extends State {
         batch.draw(space, getCameraX() - getViewWidth()/2, getCameraY() - getViewHeight()/2);      
         // draw the bird
         monkey.render(batch);
-        // draw pipes
-//        for(int i = 0; i < jumpPad.WIDTH; i++){
-//            jumppad[i].render(batch);
-//        }
         
         // end the stuff to draw
         batch.end();
@@ -61,17 +50,10 @@ public class PlayState extends State {
     
 
     @Override
-    public void update(float deltaTime) {
-        
+    public void update(float deltaTime) {       
         monkey.update(deltaTime);
         moveCameraY(monkey.getY() + CAM_Y_OFFSET);
         
-        if (monkey.getY() <= 0) {
-            // end the game
-            StateManager gsm = getStateManager();
-            // pop off the game screen 
-            gsm.pop();
-        }
     }
 
     @Override
