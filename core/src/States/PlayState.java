@@ -15,7 +15,7 @@ import com.mygdx.game.jumpPad;
  * @author farrb0382
  */
 public class PlayState extends State {
-    
+
     private Monkey monkey;
     private jumpPad[] jumppad;
     private Texture space;
