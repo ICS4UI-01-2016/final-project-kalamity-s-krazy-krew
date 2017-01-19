@@ -31,10 +31,10 @@ public class PlayState extends State {
         
         moveCameraY(monkey.getY() + CAM_Y_OFFSET);
         
-        jumppad = new jumpPad[3];
-       for(int i = 0; i < jumpPad.WIDTH; i++){
-            jumppad[i] = new jumpPad(200 + JUMPPAD_GAP_AMOUNT*jumpPad.WIDTH*i);
-        }
+//        jumppad = new jumpPad[3];
+////       for(int i = 0; i < jumpPad.WIDTH; i++){
+////            jumppad[i] = new jumpPad(200 + JUMPPAD_GAP_AMOUNT*jumpPad.WIDTH*i);
+////        }
         
         
         
@@ -51,9 +51,9 @@ public class PlayState extends State {
         // draw the bird
         monkey.render(batch);
         // draw pipes
-        for(int i = 0; i < jumpPad.WIDTH; i++){
-            jumppad[i].render(batch);
-        }
+//        for(int i = 0; i < jumpPad.WIDTH; i++){
+//            jumppad[i].render(batch);
+//        }
         
         // end the stuff to draw
         batch.end();
