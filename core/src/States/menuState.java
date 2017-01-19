@@ -19,7 +19,7 @@ import com.mygdx.game.MyGdxGame;
 public class menuState extends State {
 
     //private textures
-    private Texture bg;
+    private Texture background;
     private Texture button;
     private BitmapFont font;
     
@@ -39,7 +39,7 @@ public class menuState extends State {
     public void render(SpriteBatch batch) {
         batch.setProjectionMatrix(getCombinedCamera());
         batch.begin();
-        batch.draw(bg, 0, 0, getViewWidth(), getViewHeight());
+        batch.draw(background, 0, 0, getViewWidth(), getViewHeight());
         batch.draw(button, getViewWidth() / 2 - button.getWidth() / 2, getViewHeight() / 2);
         batch.end();
     }
@@ -65,7 +65,7 @@ public class menuState extends State {
 
     @Override
     public void dispose() {
-        bg.dispose();
+        background.dispose();
         button.dispose();
     }
 }
