@@ -28,8 +28,8 @@ public class menuState extends State {
         super(gsm);
         background = new Texture("ms.jpg");
         //button = new Texture();
-        setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
-        setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
+//        setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
+//        setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
 
         //default font
         font = new BitmapFont();
@@ -37,7 +37,7 @@ public class menuState extends State {
 
     @Override
     public void render(SpriteBatch batch) {
-        batch.setProjectionMatrix(getCombinedCamera());
+//        batch.setProjectionMatrix(getCombinedCamera());
         batch.begin();
         batch.draw(background, 0, 0, getViewWidth(), getViewHeight());
         batch.draw(button, getViewWidth() / 2 - button.getWidth() / 2, getViewHeight() / 2);

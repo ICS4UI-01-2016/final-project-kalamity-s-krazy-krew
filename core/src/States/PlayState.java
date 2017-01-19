@@ -25,18 +25,18 @@ public class PlayState extends State {
 
     public PlayState(StateManager sm){
         super(sm);
-        setCameraView(MyGdxGame.WIDTH/2, MyGdxGame.HEIGHT/2);
-        monkey = new Monkey(50,200);
+//        setCameraView(MyGdxGame.WIDTH/2, MyGdxGame.HEIGHT/2);
+        monkey = new Monkey(280, 400);
         space = new Texture("space.jpg");
         
-        moveCameraY(monkey.getY() + CAM_Y_OFFSET);      
+//        moveCameraY(monkey.getY() + CAM_Y_OFFSET);      
         
     }
     @Override
     public void render(SpriteBatch batch) {
                 // draw the screen
         // link spritebatch to the camera
-        batch.setProjectionMatrix(getCombinedCamera());
+//        batch.setProjectionMatrix(getCombinedCamera());
         // beginning of stuff to draw
         batch.begin();
         // draw the background
@@ -52,7 +52,7 @@ public class PlayState extends State {
     @Override
     public void update(float deltaTime) {       
         monkey.update(deltaTime);
-        moveCameraY(monkey.getY() + CAM_Y_OFFSET);
+//        moveCameraY(monkey.getY() + CAM_Y_OFFSET);
         
     }
 
