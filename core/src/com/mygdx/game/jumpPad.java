@@ -23,61 +23,54 @@ public class jumpPad {
     public boolean hasPassed;
     private Vector2 position;
     private Rectangle bounds;
-    
     //import pad texture
     private Texture jumppad;
-    
+
     //pad constructor
     public jumpPad(float x) {
-        float y = (int)(Math.random() * (325 - 75 + 1) + 75);
+        float y = (int) (Math.random() * (325 - 75 + 1) + 75);
         position = new Vector2(x, y);
         //jumpPad = new Texture(); 
         bounds = new Rectangle(position.x, position.y, jumppad.getHeight(), jumppad.getWidth());
         hasPassed = false;
     }
-    
+
     //methods needed in order to run the jump pads
     public void render(SpriteBatch batch) {
         batch.draw(jumppad, padPosX, padPosY);
     }
-    
+
     public float getX() {
         return padPosX;
     }
-    
-
 
     public float getY() {
         return padPosY;
     }
-    
 
-
-
-    public void setY(float y){
+    public void setY(float y) {
         hasPassed = false;
         position.y = y;
-        float x = (int)(Math.random() * (325 - 75 + 1) + 75);
+        float x = (int) (Math.random() * (325 - 75 + 1) + 75);
         position.x = x;
         bounds.setPosition(position.x, position.y);
     }
-    
-    public boolean collides(Monkey b){
-        if(bounds.overlaps(b.getHitBox())){
+
+    public boolean collides(Monkey b) {
+        if (bounds.overlaps(b.getHitBox())) {
             return true;
         }
         return false;
     }
-    
-    public void dispose(){
+
+    public void dispose() {
         jumppad.dispose();
     }
-
 
     public boolean hasPassed() {
         return hasPassed;
     }
-    
+
     public void pass() {
         hasPassed = true;
     }
