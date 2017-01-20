@@ -36,10 +36,7 @@ public class PlayState extends State {
             jumppad[i] = new jumpPad(0 + 200 * i);
         }
 
-//         jumppad = new jumpPad[3];
-//        for(int i = 0; i < jumppad.length; i++){
-//            jumppad[i] = new jumpPad(0 + 100*i);
-//        }
+
 
     }
 
@@ -61,9 +58,7 @@ public class PlayState extends State {
         }      
 
         
-//        for(int i = 0; i < jumppad.length; i++){
-//            jumppad[i].render(batch);
-//        }      
+
 
         // end the stuff to draw
         batch.end();
@@ -83,20 +78,9 @@ public class PlayState extends State {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             monkey.moveLeft();
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             monkey.moveRight();
-        }
-
-
-
-         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            monkey.moveLeft();
-        }
-         if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){
-             monkey.moveRight();
-         }
-
-         
+        }        
     }
 
     @Override

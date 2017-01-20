@@ -32,14 +32,15 @@ public class Monkey {
     
     public void bounce(){
         velocity.y = 300;
+        System.out.println("bounce");
     }
     
     public void moveLeft(){
-        velocity.x -= 5;
+        velocity.x -= 20;
     }
     
     public void moveRight(){
-        velocity.x = 5;
+        velocity.x += 20;
     }
     
     public void update(float deltaTime){
