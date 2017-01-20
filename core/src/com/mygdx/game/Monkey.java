@@ -32,6 +32,7 @@ public class Monkey {
     
     public void bounce(){
         velocity.y = 300;
+        System.out.println("bounce");
     }
     
     public void moveLeft(){
@@ -39,7 +40,7 @@ public class Monkey {
     }
     
     public void moveRight(){
-        velocity.x = 20;
+        velocity.x += 20;
     }
     
     public void update(float deltaTime){
@@ -57,10 +58,6 @@ public class Monkey {
     
     public void render(SpriteBatch batch){
         batch.draw(monkeypic, position.x, position.y);
-    }
-    
-    public void getX(){
-        return postion.x;
     }
     
     public void dispose(){

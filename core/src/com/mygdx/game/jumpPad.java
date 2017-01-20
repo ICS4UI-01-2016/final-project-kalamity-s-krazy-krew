@@ -21,7 +21,6 @@ public class jumpPad {
     
     private Vector2 position;
     private Rectangle bounds;
-    
     private Texture jumppad;
     
     //pad constructor
