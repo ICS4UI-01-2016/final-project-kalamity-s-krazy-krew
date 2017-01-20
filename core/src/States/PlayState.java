@@ -68,7 +68,13 @@ public class PlayState extends State {
     public void update(float deltaTime) {
         monkey.update(deltaTime);
 //        moveCameraY(monkey.getY() + CAM_Y_OFFSET);
-
+        
+        //did the bird jump?
+       for(int i = 0; i < jumppad.length; i++){
+           if(jumppad[i].collides(monkey) == true){
+               monkey.bounce();
+           }
+       }
     }
 
     @Override

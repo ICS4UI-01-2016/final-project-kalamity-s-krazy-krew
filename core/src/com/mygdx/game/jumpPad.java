@@ -16,7 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 public class jumpPad {
 
     //private floats
-    public boolean hasJumped;
+    public boolean Jump;
     public static final float WIDTH = 50;
     
     private Vector2 position;
@@ -49,9 +49,12 @@ public class jumpPad {
         bounds.setPosition(position.x, position.y);
     }
     
-    public void collides(Monkey b){
+    public boolean collides(Monkey b){
         if(bounds.overlaps(b.getHitBox())){
-            b.bounce();
+            System.out.println("hitting");
+            return true;
+        } else{
+            return false;
         }
     }
     
