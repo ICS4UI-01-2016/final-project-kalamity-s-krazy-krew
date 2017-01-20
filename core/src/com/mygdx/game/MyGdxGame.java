@@ -37,6 +37,6 @@ public class MyGdxGame extends ApplicationAdapter {
     // end section
     @Override
     public void dispose() {
-        batch.dispose();
+    batch.dispose();
     }
 }
