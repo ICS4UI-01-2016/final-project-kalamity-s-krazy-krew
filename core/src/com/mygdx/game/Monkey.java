@@ -20,7 +20,7 @@ public class Monkey {
     private Texture monkeypic;
     private Rectangle hitbox;
     
-    private final float gravity = -10;
+    private final float gravity = -15;
     private final float movement = 100;
     
     public Monkey(int x, int y){
@@ -31,18 +31,33 @@ public class Monkey {
     }
     
     public void bounce(){
-        velocity.y = 300;
+        velocity.y = 600;
         System.out.println("bounce");
     }
     
     public void moveLeft(){
-        velocity.x -= 20;
+        velocity.x -= 15;
     }
     
     public void moveRight(){
-        velocity.x += 20;
+        velocity.x += 15;
     }
-    
+        public boolean collides(jumpPad i){
+        if(hitbox.overlaps(i.getBounds())){
+            System.out.println("hitting");
+            return true;
+        } else{
+            return false;
+        }
+        }
+    public boolean Falling(){
+        if(velocity.y < 0){
+            return true;
+        } else{
+            return false;
+        }
+    }
+        
     public void update(float deltaTime){
         //add gravity
         velocity.y += gravity;

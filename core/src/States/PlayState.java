@@ -69,9 +69,9 @@ public class PlayState extends State {
         monkey.update(deltaTime);
 //        moveCameraY(monkey.getY() + CAM_Y_OFFSET);
         
-        //did the bird jump?
+        
        for(int i = 0; i < jumppad.length; i++){
-           if(jumppad[i].collides(monkey) == true){
+           if(monkey.Falling() == true && monkey.collides(jumppad[i]) == true){
                monkey.bounce();
            }
        }
