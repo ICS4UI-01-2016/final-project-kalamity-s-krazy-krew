@@ -32,29 +32,29 @@ public abstract class State {
         return stateManager;
     }
 
-    public OrthographicCamera getCamera() {
-        return cam;
-    }
-
-    public void setCameraView(float width, float height) {
-        cam.setToOrtho(false, width, height);
-        cam.update();
-    }
-
-    public void setCameraPosition(float x, float y) {
-        cam.position.x = x;
-        cam.position.y = y;
-        cam.update();
-    }
-
-    public Matrix4 getCombinedCamera() {
-        return cam.combined;
-    }
-
-    public void moveCameraY(float y) {
-        cam.position.y = y;
-        cam.update();
-    }
+//    public OrthographicCamera getCamera() {
+//        return cam;
+//    }
+//
+//    public void setCameraView(float width, float height) {
+//        cam.setToOrtho(false, width, height);
+//        cam.update();
+//    }
+//
+//    public void setCameraPosition(float x, float y) {
+//        cam.position.x = x;
+//        cam.position.y = y;
+//        cam.update();
+//    }
+//
+//    public Matrix4 getCombinedCamera() {
+//        return cam.combined;
+//    }
+//
+//    public void moveCameraY(float y) {
+//        cam.position.y = y;
+//        cam.update();
+//    }
 
     public float getCameraX() {
         return cam.position.x;
