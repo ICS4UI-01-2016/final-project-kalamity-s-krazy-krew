@@ -35,11 +35,11 @@ public class Monkey {
     }
     
     public void moveLeft(){
-        velocity.x -= 5;
+        velocity.x -= 20;
     }
     
     public void moveRight(){
-        velocity.x = 5;
+        velocity.x = 20;
     }
     
     public void update(float deltaTime){
@@ -58,15 +58,23 @@ public class Monkey {
     public void render(SpriteBatch batch){
         batch.draw(monkeypic, position.x, position.y);
     }
+    
+    public void getX(){
+        return postion.x;
+    }
+    
     public void dispose(){
         monkeypic.dispose();
     }
+    
     public float getX(){
         return position.x;
     }
+    
     public float getY(){
         return position.y;
     }
+    
     public Rectangle getHitBox(){
         return hitbox;
     }
