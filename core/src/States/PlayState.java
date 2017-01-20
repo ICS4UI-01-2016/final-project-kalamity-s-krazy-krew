@@ -30,10 +30,17 @@ public class PlayState extends State {
         monkey = new Monkey(280, 400);
         space = new Texture("space.jpg");
 //        moveCameraY(monkey.getY() + CAM_Y_OFFSET);      
+
          jumppad = new jumpPad[6];
         for(int i = 0; i < jumppad.length; i++){
             jumppad[i] = new jumpPad(0 + 200 * i);
         }
+
+//         jumppad = new jumpPad[3];
+//        for(int i = 0; i < jumppad.length; i++){
+//            jumppad[i] = new jumpPad(0 + 100*i);
+//        }
+
     }
 
     @Override
@@ -48,9 +55,16 @@ public class PlayState extends State {
         // draw the bird
         monkey.render(batch);
 
+
         for(int i = 0; i < jumppad.length; i++){
             jumppad[i].render(batch);
         }      
+
+        
+//        for(int i = 0; i < jumppad.length; i++){
+//            jumppad[i].render(batch);
+//        }      
+
         // end the stuff to draw
         batch.end();
     }
@@ -65,6 +79,7 @@ public class PlayState extends State {
     @Override
     public void handleInput() {
 
+
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             monkey.moveLeft();
         }
@@ -73,6 +88,15 @@ public class PlayState extends State {
         }
 
 
+
+         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            monkey.moveLeft();
+        }
+         if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){
+             monkey.moveRight();
+         }
+
+         
     }
 
     @Override
