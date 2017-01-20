@@ -16,67 +16,47 @@ import com.badlogic.gdx.math.Vector2;
 public class jumpPad {
 
     //private floats
-    private final float padPosX = (int) (0 + Math.random() * (480 - 0 + 1));
-    private final float padPosY = (int) Math.random();
-    private final float height = 25;
+    public boolean hasJumped;
     public static final float WIDTH = 50;
-    public boolean hasPassed;
+    
     private Vector2 position;
     private Rectangle bounds;
-    //import pad texture
+    
     private Texture jumppad;
     
     //pad constructor
-    public jumpPad(float x) {
-        float y = (int) (Math.random() * (325 - 75 + 1) + 75);
+    public jumpPad(float y) {
+        float x = (int) (Math.random() * (481));
         position = new Vector2(x, y);
-        //jumpPad = new Texture(); 
+        jumppad = new Texture("JumpPad2.png"); 
         bounds = new Rectangle(position.x, position.y, jumppad.getHeight(), jumppad.getWidth());
-        hasPassed = false;
+ 
+       
     }
     
     //methods needed in order to run the jump pads
     public void render(SpriteBatch batch) {
-        batch.draw(jumppad, padPosX, padPosY);
+        batch.draw(jumppad, position.x, position.y);
     }
     
-    public float getX() {
-        return padPosX;
-    }
-    
-
-
     public float getY() {
-        return padPosY;
+        return position.y;
     }
     
-
-
-
-    public void setY(float y){
-        hasPassed = false;
-        position.y = y;
-        float x = (int)(Math.random() * (325 - 75 + 1) + 75);
-        position.x = x;
+    public void setY(float y){  
+        position.y = y;    
+        float x = (int)(Math.random() * (481));
+        position.x = x;       
         bounds.setPosition(position.x, position.y);
     }
     
-    public boolean collides(Monkey b){
+    public void collides(Monkey b){
         if(bounds.overlaps(b.getHitBox())){
-            return true;
+            b.bounce();
         }
-        return false;
     }
     
     public void dispose(){
         jumppad.dispose();
-    }
-
-    public boolean hasPassed() {
-        return hasPassed;
-    }
-    
-    public void pass() {
-        hasPassed = true;
     }
 }

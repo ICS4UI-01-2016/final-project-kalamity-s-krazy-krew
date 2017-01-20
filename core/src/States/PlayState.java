@@ -4,6 +4,8 @@
  */
 package States;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Monkey;
@@ -20,16 +22,18 @@ public class PlayState extends State {
     private jumpPad[] jumppad;
     private Texture space;
     private final float CAM_Y_OFFSET = 30;
-    private final float JUMPPAD_GAP_AMOUNT = 0;
+//    private final float JUMPPAD_DISTANCE = 0;
 
     public PlayState(StateManager sm) {
         super(sm);
 //        setCameraView(MyGdxGame.WIDTH/2, MyGdxGame.HEIGHT/2);
         monkey = new Monkey(280, 400);
         space = new Texture("space.jpg");
-        
 //        moveCameraY(monkey.getY() + CAM_Y_OFFSET);      
-        
+         jumppad = new jumpPad[6];
+        for(int i = 0; i < jumppad.length; i++){
+            jumppad[i] = new jumpPad(0 + 200 * i);
+        }
     }
 
     @Override
@@ -44,6 +48,9 @@ public class PlayState extends State {
         // draw the bird
         monkey.render(batch);
 
+        for(int i = 0; i < jumppad.length; i++){
+            jumppad[i].render(batch);
+        }      
         // end the stuff to draw
         batch.end();
     }
@@ -52,11 +59,20 @@ public class PlayState extends State {
     public void update(float deltaTime) {
         monkey.update(deltaTime);
 //        moveCameraY(monkey.getY() + CAM_Y_OFFSET);
-        
+
     }
 
     @Override
     public void handleInput() {
+
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            monkey.moveLeft();
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+            monkey.moveRight();
+        }
+
+
     }
 
     @Override

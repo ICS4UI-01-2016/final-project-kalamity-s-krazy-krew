@@ -34,6 +34,14 @@ public class Monkey {
         velocity.y = 300;
     }
     
+    public void moveLeft(){
+        velocity.x -= 5;
+    }
+    
+    public void moveRight(){
+        velocity.x = 5;
+    }
+    
     public void update(float deltaTime){
         //add gravity
         velocity.y += gravity;

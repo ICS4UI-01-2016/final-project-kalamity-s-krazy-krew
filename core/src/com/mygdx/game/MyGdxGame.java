@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends ApplicationAdapter {
 
-    public static final int WIDTH = 480;
+    public static final int WIDTH = 600;
     public static final int HEIGHT = 800;
     private SpriteBatch batch;
     private StateManager stateManager;
@@ -37,6 +37,6 @@ public class MyGdxGame extends ApplicationAdapter {
     // end section
     @Override
     public void dispose() {
-        batch.dispose();
+    batch.dispose();
     }
 }
