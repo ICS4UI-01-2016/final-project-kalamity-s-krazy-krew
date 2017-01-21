@@ -46,33 +46,33 @@ public abstract class State {
         cam.position.y = y;
         cam.update();
     }
-
-    public Matrix4 getCombinedCamera() {
-        return cam.combined;
-    }
-
-    public void moveCameraY(float y) {
-        cam.position.y = y;
-        cam.update();
-    }
-
+//
+//    public Matrix4 getCombinedCamera() {
+//        return cam.combined;
+//    }
+//
+//    public void moveCameraY(float y) {
+//        cam.position.y = y;
+//        cam.update();
+//    }
+//
     public float getCameraX() {
         return cam.position.x;
     }
-//
-//    public float getCameraY() {
-//        return cam.position.y;
-//    }
-//
-//    public float getViewWidth() {
-//        return cam.viewportWidth;
-//    }
-//
-//    public float getViewHeight() {
-//        return cam.viewportHeight;
-//    }
-//
-//    public void unproject(Vector3 touch) {
-//        cam.unproject(touch);
-//    }
+
+    public float getCameraY() {
+        return cam.position.y;
+    }
+
+    public float getViewWidth() {
+        return cam.viewportWidth;
+    }
+
+    public float getViewHeight() {
+        return cam.viewportHeight;
+    }
+
+    public void unproject(Vector3 touch) {
+        cam.unproject(touch);
+    }
 }
