@@ -52,13 +52,11 @@ public class Monkey {
         }
     }
 
-    public boolean aboveJumpad(jumpPad i) {
-        if (position.y >= i.getY() + i.getHeight()) {
-            System.out.println("Above");
-            return true;
-            
+    public boolean topOfJumpad(jumpPad i) {
+        if (position.y >= i.getHeight()){
+            System.out.println("OnTop");
+            return true;            
         }else{
-          System.out.println("Below");
           return false;  
         }
         
@@ -66,7 +64,7 @@ public class Monkey {
 
     public boolean Falling() {
         if (velocity.y < 0) {
-            System.out.println("Falling");
+//            System.out.println("Falling");
             return true;
         } else {
             return false;
