@@ -38,15 +38,16 @@ public class jumpPad {
     public Rectangle getBounds(){
         return bounds;
     }
-    
-    public Rectangle getBounds(){
-        return bounds;
-    }
 
     public float getY() {
         return position.y;
     }
 
+    public float getHeight(){
+        System.out.println("Return height");
+        return position.y + jumppad.getHeight();
+    }
+    
     public void setY(float y) {
         position.y = y;
         float x = (int) (Math.random() * (481));
