@@ -38,6 +38,10 @@ public class jumpPad {
     public Rectangle getBounds(){
         return bounds;
     }
+    
+    public Rectangle getBounds(){
+        return bounds;
+    }
 
     public float getY() {
         return position.y;
