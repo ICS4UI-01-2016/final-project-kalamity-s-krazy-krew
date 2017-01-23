@@ -71,7 +71,7 @@ public class PlayState extends State {
         
         
        for(int i = 0; i < jumppad.length; i++){
-           if(monkey.Falling() == true && monkey.collides(jumppad[i]) == true && monkey.aboveJumpad(jumppad[i] ) == true){
+           if(monkey.Falling() == true && monkey.topOfJumpad(jumppad[i] ) == true && monkey.collides(jumppad[i]) == true ){
                monkey.bounce();
                System.out.println("Bouncing");
            }

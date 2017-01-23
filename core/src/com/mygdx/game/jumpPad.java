@@ -44,8 +44,7 @@ public class jumpPad {
     }
 
     public float getHeight(){
-        System.out.println("Return height");
-        return position.y + jumppad.getHeight();
+        return position.y + 3/4 * jumppad.getHeight();
     }
     
     public void setY(float y) {
