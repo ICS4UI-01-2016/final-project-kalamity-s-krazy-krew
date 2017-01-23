@@ -21,7 +21,7 @@ public class MyGdxGame extends ApplicationAdapter {
         batch = new SpriteBatch();
         Gdx.gl.glClearColor(1, 0, 0, 1);
         stateManager = new StateManager();
-        PlayState firstScreen = new PlayState(stateManager);
+        menuState firstScreen = new menuState(stateManager);
         stateManager.push(firstScreen);  // load the first screen
     }
 

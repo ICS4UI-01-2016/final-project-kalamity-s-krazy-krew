@@ -26,21 +26,21 @@ public class menuState extends State {
     //menu state constructor
     public menuState(StateManager gsm) {
         super(gsm);
-        background = new Texture("ms.jpg");
-        //button = new Texture();
-//        setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
-//        setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
+        background = new Texture("ms2.jpg");
+        button = new Texture("playbtn.png");
+        setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
+        setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
 
-        //default font
-        font = new BitmapFont();
+//        default font
+//        font = new BitmapFont();
     }
 
     @Override
     public void render(SpriteBatch batch) {
-//        batch.setProjectionMatrix(getCombinedCamera());
+        batch.setProjectionMatrix(getCombinedCamera());
         batch.begin();
         batch.draw(background, 0, 0, getViewWidth(), getViewHeight());
-        batch.draw(button, getViewWidth() / 2 - button.getWidth() / 2, getViewHeight() / 2);
+        batch.draw(button, getViewWidth()/2 - button.getWidth()/2, getViewHeight()/2);
         batch.end();
     }
 
@@ -52,11 +52,17 @@ public class menuState extends State {
     public void handleInput() {
         if (Gdx.input.justTouched()) {
 
+            // get the mouse click/touch position
             Vector3 touch = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 
+            // convert that point to game coordinates 
             unproject(touch);
 
-            if (touch.x <= MyGdxGame.HEIGHT && touch.y <= MyGdxGame.WIDTH) {
+            // check if the button is pressed
+            float buttonX = getViewWidth() / 2 - button.getWidth() / 2;
+            float buttonY = getViewHeight() / 2;
+            if (touch.x > buttonX && touch.x < buttonX + button.getWidth()
+                    && touch.y > buttonY && touch.y < buttonY + button.getHeight()) {
                 StateManager gsm = getStateManager();
                 gsm.push(new PlayState(gsm));
             }

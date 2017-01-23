@@ -25,6 +25,7 @@ public class StateManager {
     
     public void pop(){
         State s = states.pop();
+        push(s);
     }
     
     public void set(State s){
