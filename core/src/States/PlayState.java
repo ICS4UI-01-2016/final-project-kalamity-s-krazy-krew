@@ -22,6 +22,7 @@ public class PlayState extends State {
     private jumpPad[] jumppad;
     private Texture space;
     private final float CAM_Y_OFFSET = 30;
+    private float CamY;
     private final float JUMPPAD_DISTANCE = 0;
 
     public PlayState(StateManager sm) {
@@ -29,7 +30,9 @@ public class PlayState extends State {
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         monkey = new Monkey(280, 400);
         space = new Texture("space.jpg");
-        moveCameraY(monkey.getY() + CAM_Y_OFFSET);      
+        moveCameraY(monkey.getY() + CAM_Y_OFFSET);       
+        CamY = monkey.getY() + CAM_Y_OFFSET;
+          
 
          jumppad = new jumpPad[6];
         for(int i = 0; i < jumppad.length; i++){
@@ -67,7 +70,11 @@ public class PlayState extends State {
     @Override
     public void update(float deltaTime) {
         monkey.update(deltaTime);
-        moveCameraY(monkey.getY() + CAM_Y_OFFSET);
+        CamY += monkey.getY();
+        if (monkey.getY() > CamY){      
+        moveCameraY(CamY);    
+        }
+
         
         
        for(int i = 0; i < jumppad.length; i++){
