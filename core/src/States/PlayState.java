@@ -30,8 +30,9 @@ public class PlayState extends State {
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         monkey = new Monkey(280, 400);
         space = new Texture("space.jpg");
-        moveCameraY(monkey.getY() + CAM_Y_OFFSET);       
-        CamY = monkey.getY() + CAM_Y_OFFSET;
+        CamY = (monkey.getY() + CAM_Y_OFFSET);
+        moveCameraY(CamY);       
+        
           
 
          jumppad = new jumpPad[50];
@@ -68,12 +69,13 @@ public class PlayState extends State {
     }
 
     @Override
-    public void update(float deltaTime) {
+    public void update(float deltaTime) {    
         monkey.update(deltaTime);
-        CamY += monkey.getY();
-        if (monkey.getY() > CamY){      
-        moveCameraY(CamY);    
+        if(monkey.getY() > CamY){         
+            CamY = monkey.getY();              
         }
+        moveCameraY(CamY);    
+        
 
         
         

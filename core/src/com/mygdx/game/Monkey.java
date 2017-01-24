@@ -20,6 +20,7 @@ public class Monkey {
     private Vector3 velocity;
     private Texture monkeypic;
     private Rectangle hitbox;
+    private float highestPoint;
     private final float gravity = -15;
     private final float movement = 100;
 
@@ -28,6 +29,7 @@ public class Monkey {
         velocity = new Vector3(0, movement, 0);
         monkeypic = new Texture("CharacterFinished2.png");
         hitbox = new Rectangle(position.x, position.y, monkeypic.getWidth(), monkeypic.getHeight());
+        highestPoint = 0;
     }
 
     public void bounce() {
@@ -53,15 +55,16 @@ public class Monkey {
     }
 
     public boolean topOfJumpad(jumpPad i) {
-        if (position.y >= i.getHeight()){
+        if (position.y == i.getHeight()){
             System.out.println("OnTop");
             return true;            
         }else{
           return false;  
-        }
-        
+        }       
     }
 
+
+   
     public boolean Falling() {
         if (velocity.y < 0) {
 //            System.out.println("Falling");
@@ -69,7 +72,7 @@ public class Monkey {
         } else {
             return false;
         }
-    }
+    }       
 
     public void update(float deltaTime) {
         //add gravity
