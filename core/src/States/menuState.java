@@ -22,12 +22,14 @@ public class menuState extends State {
     private Texture background;
     private Texture button;
     private BitmapFont font;
-    
+    private Texture creditbutton;
+
     //menu state constructor
     public menuState(StateManager gsm) {
         super(gsm);
         background = new Texture("ms2.jpg");
         button = new Texture("playbtn.png");
+        creditbutton = new Texture("credit.png");
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
 
@@ -40,7 +42,8 @@ public class menuState extends State {
         batch.setProjectionMatrix(getCombinedCamera());
         batch.begin();
         batch.draw(background, 0, 0, getViewWidth(), getViewHeight());
-        batch.draw(button, getViewWidth()/2 - button.getWidth()/2, getViewHeight()/2);
+        batch.draw(button, getViewWidth() / 2 - button.getWidth() / 2, getViewHeight() / 2);
+        batch.draw(creditbutton, getViewWidth() / 2 - 200, getViewHeight() / 2 - 200);
         batch.end();
     }
 
@@ -61,11 +64,19 @@ public class menuState extends State {
             // check if the button is pressed
             float buttonX = getViewWidth() / 2 - button.getWidth() / 2;
             float buttonY = getViewHeight() / 2;
+            float buttonX2 = getViewWidth() / 2 - 200 - creditbutton.getWidth() / 2;
+            float buttonY2 = getViewWidth() / 2 - 200;
+
             if (touch.x > buttonX && touch.x < buttonX + button.getWidth()
                     && touch.y > buttonY && touch.y < buttonY + button.getHeight()) {
                 StateManager gsm = getStateManager();
                 gsm.push(new PlayState(gsm));
+            } else if (touch.x > buttonX2 && touch.x < buttonX2 + creditbutton.getWidth()
+                    && touch.y > buttonY2 && touch.y < buttonY + creditbutton.getHeight()) {
+                StateManager gsm = getStateManager();
+                gsm.push(new CreditState(gsm));
             }
+
         }
     }
 

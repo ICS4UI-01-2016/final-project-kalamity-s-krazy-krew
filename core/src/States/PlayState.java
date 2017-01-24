@@ -24,7 +24,7 @@ public class PlayState extends State {
     private final float CAM_Y_OFFSET = 30;
     private float CamY;
     private final float JUMPPAD_DISTANCE = 0;
-
+    
     public PlayState(StateManager sm) {
         super(sm);
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
@@ -34,7 +34,7 @@ public class PlayState extends State {
         CamY = monkey.getY() + CAM_Y_OFFSET;
           
 
-         jumppad = new jumpPad[6];
+         jumppad = new jumpPad[50];
         for(int i = 0; i < jumppad.length; i++){
             jumppad[i] = new jumpPad(0 + 200 * i);
         }
