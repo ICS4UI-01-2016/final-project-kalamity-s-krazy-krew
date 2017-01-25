@@ -34,6 +34,7 @@ public class PlayState extends State {
     private float CamY;
     private final float JUMPPAD_DISTANCE = 0;
     private int highScore;
+    private int score;
     private BitmapFont font;
 
     public PlayState(StateManager sm) {
@@ -83,7 +84,7 @@ public class PlayState extends State {
         batch.begin();
         // draw the background
         batch.draw(space, getCameraX() - getViewWidth() / 2, getCameraY() - getViewHeight() / 2);
-        font.draw(batch, "" + highScore, getViewWidth() / 2, getViewHeight() - 100);
+        font.draw(batch, "" + score, getViewWidth() / 2, getCameraY() + 350);
         // draw the monkey
         monkey.render(batch);
 
@@ -102,6 +103,9 @@ public class PlayState extends State {
     @Override
     public void update(float deltaTime) {
 
+        
+        
+        
         if (monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH) {
 //            System.out.println("to left");
             monkey.setX(-128);
@@ -147,6 +151,7 @@ public class PlayState extends State {
             if (monkey.Falling() == true && monkey.topOfJumpad(jumppad[i]) == true && monkey.collides(jumppad[i]) == true) {
                 monkey.bounce();
                 bounce.play(0.05f);
+                score ++;
                 System.out.println("Bouncing");
             }
         }
