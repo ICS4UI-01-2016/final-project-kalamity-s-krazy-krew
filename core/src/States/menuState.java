@@ -6,6 +6,8 @@ package States;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -21,6 +23,8 @@ public class menuState extends State {
     //private textures
     private Texture background;
     private Texture button;
+    private Music music;
+    private Sound playGame;
     private BitmapFont font;
     private Texture creditbutton;
 
@@ -30,11 +34,16 @@ public class menuState extends State {
         background = new Texture("ms2.jpg");
         button = new Texture("playbtn.png");
         creditbutton = new Texture("credit.png");
+        playGame = Gdx.audio.newSound(Gdx.files.internal("pg.mp3"));
+        System.out.println(playGame);
+        music = Gdx.audio.newMusic(Gdx.files.internal("Theme.mp3"));      
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
 
-//        default font
-//        font = new BitmapFont();
+
     }
 
     @Override
@@ -71,6 +80,8 @@ public class menuState extends State {
                     && touch.y > buttonY && touch.y < buttonY + button.getHeight()) {
                 StateManager gsm = getStateManager();
                 gsm.push(new PlayState(gsm));
+                playGame.play(0.1f);
+                music.pause();
             }
             
             if (touch.x > buttonX2 && touch.x < buttonX2 + creditbutton.getWidth()

@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author preej0747
  */
-public class jumpPad {
+public class jumpPad{
 
     //private floats
     public boolean Jump;
@@ -21,9 +21,10 @@ public class jumpPad {
     private Vector2 position;
     private Rectangle bounds;
     private Texture jumppad;
+  
 
     //pad constructor
-    public jumpPad(float y) {
+    public jumpPad(float y){
         float x = (int) (Math.random() * (481));
         position = new Vector2(x, y);
         jumppad = new Texture("JumpPad2.png"); 
@@ -61,15 +62,6 @@ public class jumpPad {
         float x = (int) (Math.random() * (481));
         position.x = x;
         bounds.setPosition(position.x, position.y);
-    }
-
-    public boolean collides(Monkey b) {
-        if (bounds.overlaps(b.getHitBox())) {
-            System.out.println("hitting");
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public void dispose() {

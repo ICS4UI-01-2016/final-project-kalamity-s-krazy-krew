@@ -6,10 +6,12 @@ package States;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Monkey;
 import com.mygdx.game.MyGdxGame;
+
 import com.mygdx.game.jumpPad;
 
 /**
@@ -21,13 +23,19 @@ public class PlayState extends State {
     private Monkey monkey;
     private jumpPad[] jumppad;
     private Texture space;
+     private Music music;
     private final float CAM_Y_OFFSET = 30;
     private float CamY;
     private final float JUMPPAD_DISTANCE = 0;
     
     public PlayState(StateManager sm) {
         super(sm);
+        
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
+        music = Gdx.audio.newMusic(Gdx.files.internal("Dk.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
         monkey = new Monkey(0, 400);
         space = new Texture("space.jpg");
         CamY = (monkey.getY() + CAM_Y_OFFSET);
@@ -35,7 +43,7 @@ public class PlayState extends State {
        
          jumppad = new jumpPad[6];
         for(int i = 0; i < jumppad.length; i++){
-            jumppad[i] = new jumpPad(-100 + 250 * i);
+           jumppad[i] = new jumpPad(-100 + 250 * i);
         }
         
         monkey.setX(jumppad[1].getX());
@@ -82,6 +90,7 @@ public class PlayState extends State {
             StateManager gsm = getStateManager();
             // pop off the game screen to go to menu
             gsm.pop();
+             System.out.println("poppin");
         }
         
         if(monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH){
