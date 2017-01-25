@@ -35,7 +35,6 @@ public class menuState extends State {
         button = new Texture("playbtn.png");
         creditbutton = new Texture("credit.png");
         playGame = Gdx.audio.newSound(Gdx.files.internal("pg.mp3"));
-        System.out.println(playGame);
         music = Gdx.audio.newMusic(Gdx.files.internal("Theme.mp3"));      
         music.setLooping(true);
         music.setVolume(0.1f);

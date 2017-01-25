@@ -7,6 +7,7 @@ package States;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Monkey;
@@ -24,6 +25,7 @@ public class PlayState extends State {
     private jumpPad[] jumppad;
     private Texture space;
      private Music music;
+     private Sound bounce;
     private final float CAM_Y_OFFSET = 30;
     private float CamY;
     private final float JUMPPAD_DISTANCE = 0;
@@ -36,6 +38,7 @@ public class PlayState extends State {
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
+        bounce = Gdx.audio.newSound(Gdx.files.internal("Bounce.mp3"));
         monkey = new Monkey(0, 400);
         space = new Texture("space.jpg");
         CamY = (monkey.getY() + CAM_Y_OFFSET);
@@ -107,6 +110,7 @@ public class PlayState extends State {
        for(int i = 0; i < jumppad.length; i++){
            if(monkey.Falling() == true  && monkey.topOfJumpad(jumppad[i] ) == true && monkey.collides(jumppad[i]) == true ){
                monkey.bounce();
+               bounce.play(0.05f);
                System.out.println("Bouncing");
            }
        }
