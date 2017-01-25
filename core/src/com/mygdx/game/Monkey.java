@@ -29,12 +29,12 @@ public class Monkey {
         velocity = new Vector3(0, movement, 0);
         monkeypic = new Texture("CharacterFinished2.png");
         hitbox = new Rectangle(position.x, position.y, monkeypic.getWidth(), monkeypic.getHeight());
-        highestPoint = 0;
+        
     }
 
     public void bounce() {
         velocity.y = 750;
-        System.out.println("bounce");
+//        System.out.println("bounce");
     }
 
     public void moveLeft() {
@@ -47,7 +47,7 @@ public class Monkey {
 
     public boolean collides(jumpPad i) {
         if (hitbox.overlaps(i.getBounds())) {
-            System.out.println("hitting");
+//            System.out.println("hitting");
             return true;
         } else {
             return false;
@@ -56,7 +56,7 @@ public class Monkey {
 
     public boolean topOfJumpad(jumpPad i) {
         if (position.y >= i.throughJumpPad()){
-            System.out.println("OnTop");
+//            System.out.println("OnTop");
             return true;            
         }else{
           return false;  

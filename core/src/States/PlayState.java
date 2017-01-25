@@ -51,9 +51,9 @@ public class PlayState extends State {
             jumppad[i] = new jumpPad(-100 + 250 * i);
         }
 
-        monster = new Monster[8];
+        monster = new Monster[2];
         for (int i = 0; i < monster.length; i++) {
-            monster[i] = new Monster(-100 + 250 * i);
+            monster[i] = new Monster(1000 * i);
         }
 
         monkey.setX(jumppad[1].getX());
@@ -86,8 +86,24 @@ public class PlayState extends State {
 
     @Override
     public void update(float deltaTime) {
+        
+              if (monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH) {
+//            System.out.println("to left");
+            monkey.setX(-128);
+        }
+
+        if (monkey.getX() + monkey.getWidth() < 0) {
+//            System.out.println("to right");
+            monkey.setX(728);
+        }
 
         monkey.update(deltaTime);
+        
+        for (int i = 0; i < monster.length; i++) {
+            monster[i].update(deltaTime);
+        }
+       
+        
 
         if (monkey.getY() > CamY) {
             CamY = monkey.getY();
@@ -95,23 +111,25 @@ public class PlayState extends State {
         moveCameraY(CamY);
 
         if (monkey.getY() <= 0 - CamY) {
-            System.out.println("gratatatatatatattatata");
+//            System.out.println("gratatatatatatattatata");
             // end the game
             StateManager gsm = getStateManager();
             // pop off the game screen to go to menu
             gsm.pop();
-            System.out.println("poppin");
+//            System.out.println("poppin");
         }
-
-        if (monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH) {
-            System.out.println("to left");
-            monkey.setX(-128);
+        for (int i = 0; i < monster.length; i++) {
+        if(monster[i].getX() < 0 ){
+            
+            monster[i].GoRight();
         }
-
-        if (monkey.getX() + monkey.getWidth() < 0) {
-            System.out.println("to right");
-            monkey.setX(728);
+        
+        if(monster[i].getX() > MyGdxGame.WIDTH ){            
+            monster[i].GoLeft();
         }
+            }
+        
+  
 
         System.out.println(monkey.getX());
         for (int i = 0; i < jumppad.length; i++) {
@@ -130,7 +148,7 @@ public class PlayState extends State {
         }
         for (int i = 0; i < monster.length; i++) {
             if (getCameraY() - MyGdxGame.HEIGHT / 2 > monster[i].getY() + monster[i].getHeight()) {
-                float x = monster[i].getY() + 250 * monster.length;
+                float x = monster[i].getY() + 1000 * monster.length;
                 monster[i].setY(x);
                 System.out.println("Monster Changed");
             }
