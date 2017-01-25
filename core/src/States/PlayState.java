@@ -99,7 +99,7 @@ public class PlayState extends State {
             // end the game
             StateManager gsm = getStateManager();
             // pop off the game screen to go to menu
-            gsm.pop();
+            gsm.push(new DeathState(gsm));
             System.out.println("poppin");
         }
 
@@ -121,7 +121,6 @@ public class PlayState extends State {
                 System.out.println("Bouncing");
             }
         }
-        
         for (int i = 0; i < jumppad.length; i++) {
             if (getCameraY() - MyGdxGame.HEIGHT / 2 > jumppad[i].getY() + jumppad[i].getHeight()) {
                 float x = jumppad[i].getY() + 250 * jumppad.length;
