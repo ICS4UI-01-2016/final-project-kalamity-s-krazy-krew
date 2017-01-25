@@ -67,7 +67,7 @@ public class PlayState extends State {
 
         monster = new Monster[2];
         for (int i = 0; i < monster.length; i++) {
-            monster[i] = new Monster(1000 * i);
+            monster[i] = new Monster(1240 * i);
         }
 
         monkey.setX(jumppad[1].getX());
