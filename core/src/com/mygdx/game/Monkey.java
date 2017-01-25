@@ -33,7 +33,7 @@ public class Monkey {
     }
 
     public void bounce() {
-        velocity.y = 1000;
+        velocity.y = 675;
         System.out.println("bounce");
     }
 
