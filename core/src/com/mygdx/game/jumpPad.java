@@ -27,7 +27,7 @@ public class jumpPad{
     public jumpPad(float y){
         float x = (int) (Math.random() * (481));
         position = new Vector2(x, y);
-        jumppad = new Texture("JumpPad2.png"); 
+        jumppad = new Texture("JumpPad3.png"); 
         bounds = new Rectangle(position.x, position.y,  jumppad.getWidth(),jumppad.getHeight());       
     }
 
