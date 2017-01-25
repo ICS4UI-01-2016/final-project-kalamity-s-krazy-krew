@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Monkey;
+import com.mygdx.game.Monster;
 import com.mygdx.game.MyGdxGame;
 
 import com.mygdx.game.jumpPad;
@@ -23,16 +24,17 @@ public class PlayState extends State {
 
     private Monkey monkey;
     private jumpPad[] jumppad;
+    private Monster[] monster;
     private Texture space;
-     private Music music;
-     private Sound bounce;
+    private Music music;
+    private Sound bounce;
     private final float CAM_Y_OFFSET = 30;
     private float CamY;
     private final float JUMPPAD_DISTANCE = 0;
-    
+
     public PlayState(StateManager sm) {
         super(sm);
-        
+
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         music = Gdx.audio.newMusic(Gdx.files.internal("Dk.mp3"));
         music.setLooping(true);
@@ -42,15 +44,19 @@ public class PlayState extends State {
         monkey = new Monkey(0, 400);
         space = new Texture("space.jpg");
         CamY = (monkey.getY() + CAM_Y_OFFSET);
-        moveCameraY(CamY);       
-       
-         jumppad = new jumpPad[6];
-        for(int i = 0; i < jumppad.length; i++){
-           jumppad[i] = new jumpPad(-100 + 250 * i);
-        }
-        
-        monkey.setX(jumppad[1].getX());
+        moveCameraY(CamY);
 
+        jumppad = new jumpPad[6];
+        for (int i = 0; i < jumppad.length; i++) {
+            jumppad[i] = new jumpPad(-100 + 250 * i);
+        }
+
+        monster = new Monster[8];
+        for (int i = 0; i < monster.length; i++) {
+            monster[i] = new Monster(-100 + 250 * i);
+        }
+
+        monkey.setX(jumppad[1].getX());
 
     }
 
@@ -66,12 +72,13 @@ public class PlayState extends State {
         monkey.render(batch);
 
 
-        for(int i = 0; i < jumppad.length; i++){
+        for (int i = 0; i < jumppad.length; i++) {
             jumppad[i].render(batch);
-        }      
+        }
 
-        
-
+        for (int i = 0; i < monster.length; i++) {
+            monster[i].render(batch);
+        }
 
         // end the stuff to draw
         batch.end();
@@ -79,49 +86,57 @@ public class PlayState extends State {
 
     @Override
     public void update(float deltaTime) {
-        
+
         monkey.update(deltaTime);
-       
-        if(monkey.getY() > CamY){         
-            CamY = monkey.getY();              
+
+        if (monkey.getY() > CamY) {
+            CamY = monkey.getY();
         }
-        moveCameraY(CamY); 
-        
-         if (monkey.getY()<= 0 - CamY) {
-             System.out.println("gratatatatatatattatata");
+        moveCameraY(CamY);
+
+        if (monkey.getY() <= 0 - CamY) {
+            System.out.println("gratatatatatatattatata");
             // end the game
             StateManager gsm = getStateManager();
             // pop off the game screen to go to menu
             gsm.pop();
-             System.out.println("poppin");
+            System.out.println("poppin");
         }
-        
-        if(monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH){
+
+        if (monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH) {
             System.out.println("to left");
             monkey.setX(-128);
         }
-        
-        if(monkey.getX() + monkey.getWidth() < 0){
+
+        if (monkey.getX() + monkey.getWidth() < 0) {
             System.out.println("to right");
             monkey.setX(728);
         }
-       
+
         System.out.println(monkey.getX());
-       for(int i = 0; i < jumppad.length; i++){
-           if(monkey.Falling() == true  && monkey.topOfJumpad(jumppad[i] ) == true && monkey.collides(jumppad[i]) == true ){
-               monkey.bounce();
-               bounce.play(0.05f);
-               System.out.println("Bouncing");
-           }
-       }
-       for(int i = 0; i < jumppad.length; i++){
-       if(getCameraY() - MyGdxGame.HEIGHT/2 > jumppad[i].getY() + jumppad[i].getHeight()){
-         float x = jumppad[i].getY() + 250 * jumppad.length;
-         jumppad[i].setY(x);
-           System.out.println("Jumppad Changed");
-       }
+        for (int i = 0; i < jumppad.length; i++) {
+            if (monkey.Falling() == true && monkey.topOfJumpad(jumppad[i]) == true && monkey.collides(jumppad[i]) == true) {
+                monkey.bounce();
+                bounce.play(0.05f);
+                System.out.println("Bouncing");
+            }
+        }
+        for (int i = 0; i < jumppad.length; i++) {
+            if (getCameraY() - MyGdxGame.HEIGHT / 2 > jumppad[i].getY() + jumppad[i].getHeight()) {
+                float x = jumppad[i].getY() + 250 * jumppad.length;
+                jumppad[i].setY(x);
+                System.out.println("Jumppad Changed");
+            }
+        }
+        for (int i = 0; i < monster.length; i++) {
+            if (getCameraY() - MyGdxGame.HEIGHT / 2 > monster[i].getY() + monster[i].getHeight()) {
+                float x = monster[i].getY() + 250 * monster.length;
+                monster[i].setY(x);
+                System.out.println("Monster Changed");
+            }
+        }
     }
-    }
+
     @Override
     public void handleInput() {
 
@@ -131,7 +146,7 @@ public class PlayState extends State {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             monkey.moveRight();
-        }        
+        }
     }
 
     @Override
