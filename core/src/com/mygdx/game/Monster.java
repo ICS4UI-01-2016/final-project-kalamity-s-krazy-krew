@@ -24,7 +24,7 @@ public class Monster {
     private float movement;   
     
     public Monster(float y){
-        float x = 0;      
+        float x = 1 ;      
         position = new Vector3(x, y, 0);
         velocity = 0;
         monster = new Texture("monster.png"); 

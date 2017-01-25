@@ -5,6 +5,7 @@
 package States;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
@@ -18,12 +19,13 @@ public class DeathState extends State {
 
     private Texture death;
     private Texture menu;
+    private Sound oh;
     private float CamY;
 
     public DeathState(StateManager gsm) {
 
         super(gsm);
-
+        oh = Gdx.audio.newSound(Gdx.files.internal("Supa.mp3"));
         death = new Texture("death.png");
         menu = new Texture("menu.png");
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
@@ -42,6 +44,7 @@ public class DeathState extends State {
 
     @Override
     public void update(float deltaTime) {
+        oh.play();
     }
 
     @Override

@@ -43,9 +43,8 @@ public class PlayState extends State {
 
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         music = Gdx.audio.newMusic(Gdx.files.internal("Dk.mp3"));
-        music.setLooping(true);
-        music.setVolume(0.1f);
         music.play();
+        music.setVolume(0.1f);       
         bounce = Gdx.audio.newSound(Gdx.files.internal("Bounce.mp3"));
         monkey = new Monkey(0, 400);
         space = new Texture("space.jpg");
@@ -65,7 +64,7 @@ public class PlayState extends State {
 
         monster = new Monster[2];
         for (int i = 0; i < monster.length; i++) {
-            monster[i] = new Monster(1000 * i);
+            monster[i] = new Monster(950 + 1000 * i);
         }
 
         monkey.setX(jumppad[1].getX());
@@ -103,9 +102,6 @@ public class PlayState extends State {
 
     @Override
     public void update(float deltaTime) {
-
-        
-        
         
         if (monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH) {
 //            System.out.println("to left");
@@ -132,15 +128,15 @@ public class PlayState extends State {
     //make game conditions
          StateManager gsm = getStateManager();
         if (monkey.getY() + monkey.getHeight() <= getCameraY() - MyGdxGame.HEIGHT / 2) {
-
-            // end the game
-         
+            // end the game        
             // pop off the game screen to go to menu
             gsm.push(new DeathState(gsm));
             System.out.println("poppin");
+            music.pause();
         }
         for (int i = 0; i < monster.length; i++) {
              if (monkey.collidesMonster(monster[i]) == true){
+                 music.pause();
             gsm.push(new DeathState(gsm));
         }
             }      
@@ -165,8 +161,7 @@ public class PlayState extends State {
         for (int i = 0; i < jumppad.length; i++) {
             if (monkey.Falling() == true && monkey.topOfJumpad(jumppad[i]) == true && monkey.collides(jumppad[i]) == true) {
                 monkey.bounce();
-                bounce.play(0.05f);
-                score ++;
+                bounce.play(0.05f);          
                 System.out.println("Bouncing");
             }
         }
@@ -175,6 +170,7 @@ public class PlayState extends State {
             if (getCameraY() - MyGdxGame.HEIGHT / 2 > jumppad[i].getY() + jumppad[i].getHeight()) {
                 float x = jumppad[i].getY() + 250 * jumppad.length;
                 jumppad[i].setY(x);
+                score++;
                 System.out.println("Jumppad Changed");
             }
         }
