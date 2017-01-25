@@ -53,6 +53,16 @@ public class Monkey {
             return false;
         }
     }
+    
+        public boolean collidesMonster(Monster i) {
+        if (hitbox.overlaps(i.getBounds())) {
+//            System.out.println("hitting");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     public boolean topOfJumpad(jumpPad i) {
         if (position.y >= i.throughJumpPad()){
@@ -65,6 +75,9 @@ public class Monkey {
 
     public float getWidth(){
         return monkeypic.getWidth();
+    }
+        public float getHeight(){
+        return monkeypic.getHeight();
     }
     
     public void setX(float x){

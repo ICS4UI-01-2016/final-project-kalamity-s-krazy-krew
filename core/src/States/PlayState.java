@@ -31,6 +31,7 @@ public class PlayState extends State {
     private Texture space;
     private Music music;
     private Sound bounce;
+    private float time;
     private final float CAM_Y_OFFSET = 30;
     private float CamY;
     private final float JUMPPAD_DISTANCE = 0;
@@ -127,23 +128,37 @@ public class PlayState extends State {
         if (monkey.getY() > CamY) {
             CamY = monkey.getY();
         }
+        
         moveCameraY(CamY);
+        
+    //make game conditions
+         StateManager gsm = getStateManager();
+        if (monkey.getY() + monkey.getHeight() <= getCameraY() - MyGdxGame.HEIGHT / 2) {
 
-        if (monkey.getY() <= 0 - CamY) {
-//            System.out.println("gratatatatatatattatata");
             // end the game
-            StateManager gsm = getStateManager();
+         
             // pop off the game screen to go to menu
             gsm.push(new DeathState(gsm));
             System.out.println("poppin");
         }
         for (int i = 0; i < monster.length; i++) {
-            if (monster[i].getX() < 0) {
+             if (monkey.collidesMonster(monster[i]) == true){
+            gsm.push(new DeathState(gsm));
+        }
+            }      
+        
+        time += deltaTime;
+        if (time > 10) {
+            time = time - 10;
+        }
 
+        if (time <= 5) {
+            for (int i = 0; i < monster.length; i++) {
                 monster[i].GoRight();
             }
-
-            if (monster[i].getX() > MyGdxGame.WIDTH) {
+        }
+        if (time > 5) {
+            for (int i = 0; i < monster.length; i++) {
                 monster[i].GoLeft();
             }
         }
