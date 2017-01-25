@@ -28,32 +28,30 @@ public class PlayState extends State {
     public PlayState(StateManager sm) {
         super(sm);
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
-        monkey = new Monkey(280, 400);
+        monkey = new Monkey(0, 400);
         space = new Texture("space.jpg");
         CamY = (monkey.getY() + CAM_Y_OFFSET);
         moveCameraY(CamY);       
-        
-          
-
-         jumppad = new jumpPad[50];
+       
+         jumppad = new jumpPad[6];
         for(int i = 0; i < jumppad.length; i++){
-            jumppad[i] = new jumpPad(0 + 200 * i);
+            jumppad[i] = new jumpPad(-100 + 250 * i);
         }
-
+        
+        monkey.setX(jumppad[1].getX());
 
 
     }
 
     @Override
     public void render(SpriteBatch batch) {
-        // draw the screen
-        // link spritebatch to the camera
+        // draw the screen and link spritebatch to the camera
         batch.setProjectionMatrix(getCombinedCamera());
-        // beginning of stuff to draw
+        // beginning drawing
         batch.begin();
         // draw the background
         batch.draw(space, getCameraX() - getViewWidth() / 2, getCameraY() - getViewHeight() / 2);
-        // draw the bird
+        // draw the monkey
         monkey.render(batch);
 
 
@@ -69,24 +67,48 @@ public class PlayState extends State {
     }
 
     @Override
-    public void update(float deltaTime) {    
+    public void update(float deltaTime) {
+        
         monkey.update(deltaTime);
+       
         if(monkey.getY() > CamY){         
             CamY = monkey.getY();              
         }
-        moveCameraY(CamY);    
+        moveCameraY(CamY); 
         
-
+         if (monkey.getY()<= 0 - CamY) {
+             System.out.println("gratatatatatatattatata");
+            // end the game
+            StateManager gsm = getStateManager();
+            // pop off the game screen to go to menu
+            gsm.pop();
+        }
         
+        if(monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH){
+            System.out.println("to left");
+            monkey.setX(-128);
+        }
         
+        if(monkey.getX() + monkey.getWidth() < 0){
+            System.out.println("to right");
+            monkey.setX(728);
+        }
+       
+        System.out.println(monkey.getX());
        for(int i = 0; i < jumppad.length; i++){
-           if(monkey.Falling() == true && monkey.topOfJumpad(jumppad[i] ) == true && monkey.collides(jumppad[i]) == true ){
+           if(monkey.Falling() == true  && monkey.topOfJumpad(jumppad[i] ) == true && monkey.collides(jumppad[i]) == true ){
                monkey.bounce();
                System.out.println("Bouncing");
            }
        }
+       for(int i = 0; i < jumppad.length; i++){
+       if(getCameraY() - MyGdxGame.HEIGHT/2 > jumppad[i].getY() + jumppad[i].getHeight()){
+         float x = jumppad[i].getY() + 250 * jumppad.length;
+         jumppad[i].setY(x);
+           System.out.println("Jumppad Changed");
+       }
     }
-
+    }
     @Override
     public void handleInput() {
 

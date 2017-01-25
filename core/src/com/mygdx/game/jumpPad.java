@@ -42,9 +42,18 @@ public class jumpPad {
     public float getY() {
         return position.y;
     }
+      
+    public float getX() {
+        return position.x;
+    }
 
     public float getHeight(){
-        return position.y + 3/4 * jumppad.getHeight();
+        return jumppad.getHeight();
+        
+    }
+    
+    public float throughJumpPad(){
+         return position.y + 3/4 * jumppad.getHeight();
     }
     
     public void setY(float y) {
