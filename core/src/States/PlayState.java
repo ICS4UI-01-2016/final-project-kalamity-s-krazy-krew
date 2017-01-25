@@ -6,9 +6,11 @@ package States;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Monkey;
 import com.mygdx.game.Monster;
@@ -32,6 +34,9 @@ public class PlayState extends State {
     private final float CAM_Y_OFFSET = 30;
     private float CamY;
     private final float JUMPPAD_DISTANCE = 0;
+    private int highScore;
+    private int score;
+    private BitmapFont font;
 
     public PlayState(StateManager sm) {
         super(sm);
@@ -47,6 +52,12 @@ public class PlayState extends State {
         CamY = (monkey.getY() + CAM_Y_OFFSET);
         moveCameraY(CamY);
 
+        Preferences pref = Gdx.app.getPreferences("highscore");
+        highScore = pref.getInteger("highScore", 0);
+        font = new BitmapFont();    // default 15pt Arial Font 
+
+
+
         jumppad = new jumpPad[6];
         for (int i = 0; i < jumppad.length; i++) {
             jumppad[i] = new jumpPad(-100 + 250 * i);
@@ -61,6 +72,11 @@ public class PlayState extends State {
 
     }
 
+    public void updateScore() {
+        Preferences pref = Gdx.app.getPreferences("highscore");
+        highScore = pref.getInteger("highScore", 0);
+    }
+
     @Override
     public void render(SpriteBatch batch) {
         // draw the screen and link spritebatch to the camera
@@ -69,9 +85,9 @@ public class PlayState extends State {
         batch.begin();
         // draw the background
         batch.draw(space, getCameraX() - getViewWidth() / 2, getCameraY() - getViewHeight() / 2);
+        font.draw(batch, "" + score, getViewWidth() / 2, getCameraY() + 350);
         // draw the monkey
         monkey.render(batch);
-
 
         for (int i = 0; i < jumppad.length; i++) {
             jumppad[i].render(batch);
@@ -147,9 +163,11 @@ public class PlayState extends State {
             if (monkey.Falling() == true && monkey.topOfJumpad(jumppad[i]) == true && monkey.collides(jumppad[i]) == true) {
                 monkey.bounce();
                 bounce.play(0.05f);
+                score ++;
                 System.out.println("Bouncing");
             }
         }
+        
         for (int i = 0; i < jumppad.length; i++) {
             if (getCameraY() - MyGdxGame.HEIGHT / 2 > jumppad[i].getY() + jumppad[i].getHeight()) {
                 float x = jumppad[i].getY() + 250 * jumppad.length;
