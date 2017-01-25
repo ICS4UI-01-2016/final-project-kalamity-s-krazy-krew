@@ -168,7 +168,6 @@ public class PlayState extends State {
             if (monkey.Falling() == true && monkey.topOfJumpad(jumppad[i]) == true && monkey.collides(jumppad[i]) == true) {
                 monkey.bounce();
                 bounce.play(0.05f);
-                score ++;
                 System.out.println("Bouncing");
             }
         }
@@ -177,6 +176,7 @@ public class PlayState extends State {
             if (getCameraY() - MyGdxGame.HEIGHT / 2 > jumppad[i].getY() + jumppad[i].getHeight()) {
                 float x = jumppad[i].getY() + 250 * jumppad.length;
                 jumppad[i].setY(x);
+                score++;
                 System.out.println("Jumppad Changed");
             }
         }
