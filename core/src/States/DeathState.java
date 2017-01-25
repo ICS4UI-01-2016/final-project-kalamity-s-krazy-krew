@@ -26,6 +26,8 @@ public class DeathState extends State {
         super(gsm);
 
         death = new Texture("death.png");
+        menu = new Texture("menu.png");
+        replay = new Texture("replay.png");
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
         
@@ -35,9 +37,8 @@ public class DeathState extends State {
     public void render(SpriteBatch batch) {
         batch.setProjectionMatrix(getCombinedCamera());
         batch.begin();
-        batch.setProjectionMatrix(getCombinedCamera());
         batch.draw(death, 0, 0, getViewWidth(), getViewHeight());
-//        batch.draw(menu, getViewWidth() / 2 - menu.getWidth() / 2, getViewHeight() / 2);
+        batch.draw(menu, getViewWidth() / 2 - menu.getWidth() / 2, getViewHeight() / 2 - 150);
         batch.end();
     }
 
@@ -54,6 +55,9 @@ public class DeathState extends State {
 
             unproject(touch);
 
+            float buttonX = getViewWidth() / 2 - death.getWidth() / 2;
+            float buttonY = getViewHeight() / 2;
+            
             if (touch.x < MyGdxGame.WIDTH && touch.y < MyGdxGame.HEIGHT) {
                 StateManager gsm = getStateManager();
                 gsm.push(new menuState(gsm));
