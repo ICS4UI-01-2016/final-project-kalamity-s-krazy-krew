@@ -104,6 +104,9 @@ public class PlayState extends State {
     @Override
     public void update(float deltaTime) {
 
+        
+        
+        
         if (monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH) {
 //            System.out.println("to left");
             monkey.setX(-128);
