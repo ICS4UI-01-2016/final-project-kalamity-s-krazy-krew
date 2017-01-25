@@ -115,8 +115,8 @@ public class PlayState extends State {
             // end the game
             StateManager gsm = getStateManager();
             // pop off the game screen to go to menu
-            gsm.pop();
-//            System.out.println("poppin");
+            gsm.push(new DeathState(gsm));
+            System.out.println("poppin");
         }
         for (int i = 0; i < monster.length; i++) {
         if(monster[i].getX() < 0 ){
@@ -146,6 +146,7 @@ public class PlayState extends State {
                 System.out.println("Jumppad Changed");
             }
         }
+        
         for (int i = 0; i < monster.length; i++) {
             if (getCameraY() - MyGdxGame.HEIGHT / 2 > monster[i].getY() + monster[i].getHeight()) {
                 float x = monster[i].getY() + 1000 * monster.length;
@@ -157,7 +158,6 @@ public class PlayState extends State {
 
     @Override
     public void handleInput() {
-
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             monkey.moveLeft();

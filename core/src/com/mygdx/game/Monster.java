@@ -75,7 +75,7 @@ public class Monster {
     
     public void setY(float y) {
         position.y = y;
-        float x = (int) (Math.random() * (681));
+        float x = (int) (Math.random() * (781));
         position.x = x;
         bounds.setPosition(position.x, position.y);
     }
