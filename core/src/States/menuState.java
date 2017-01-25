@@ -87,6 +87,7 @@ public class menuState extends State {
                     && touch.y > buttonY2 && touch.y < buttonY2 + creditbutton.getHeight()) {
                 StateManager gsm = getStateManager();
                 gsm.push(new CreditState(gsm));
+                music.setLooping(false);
             }
         }
     }
