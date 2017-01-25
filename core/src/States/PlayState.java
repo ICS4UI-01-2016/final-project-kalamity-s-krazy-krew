@@ -6,9 +6,11 @@ package States;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Monkey;
 import com.mygdx.game.Monster;
@@ -31,6 +33,8 @@ public class PlayState extends State {
     private final float CAM_Y_OFFSET = 30;
     private float CamY;
     private final float JUMPPAD_DISTANCE = 0;
+    private int highScore;
+    private BitmapFont font;
 
     public PlayState(StateManager sm) {
         super(sm);
@@ -46,6 +50,12 @@ public class PlayState extends State {
         CamY = (monkey.getY() + CAM_Y_OFFSET);
         moveCameraY(CamY);
 
+        Preferences pref = Gdx.app.getPreferences("highscore");
+        highScore = pref.getInteger("highScore", 0);
+        font = new BitmapFont();    // default 15pt Arial Font 
+
+
+
         jumppad = new jumpPad[6];
         for (int i = 0; i < jumppad.length; i++) {
             jumppad[i] = new jumpPad(-100 + 250 * i);
@@ -60,6 +70,11 @@ public class PlayState extends State {
 
     }
 
+    public void updateScore() {
+        Preferences pref = Gdx.app.getPreferences("highscore");
+        highScore = pref.getInteger("highScore", 0);
+    }
+
     @Override
     public void render(SpriteBatch batch) {
         // draw the screen and link spritebatch to the camera
@@ -68,9 +83,9 @@ public class PlayState extends State {
         batch.begin();
         // draw the background
         batch.draw(space, getCameraX() - getViewWidth() / 2, getCameraY() - getViewHeight() / 2);
+        font.draw(batch, "" + highScore, getViewWidth() / 2, getViewHeight() - 100);
         // draw the monkey
         monkey.render(batch);
-
 
         for (int i = 0; i < jumppad.length; i++) {
             jumppad[i].render(batch);
@@ -86,8 +101,8 @@ public class PlayState extends State {
 
     @Override
     public void update(float deltaTime) {
-        
-              if (monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH) {
+
+        if (monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH) {
 //            System.out.println("to left");
             monkey.setX(-128);
         }
@@ -98,12 +113,10 @@ public class PlayState extends State {
         }
 
         monkey.update(deltaTime);
-        
+
         for (int i = 0; i < monster.length; i++) {
             monster[i].update(deltaTime);
         }
-       
-        
 
         if (monkey.getY() > CamY) {
             CamY = monkey.getY();
@@ -119,17 +132,15 @@ public class PlayState extends State {
             System.out.println("poppin");
         }
         for (int i = 0; i < monster.length; i++) {
-        if(monster[i].getX() < 0 ){
-            
-            monster[i].GoRight();
-        }
-        
-        if(monster[i].getX() > MyGdxGame.WIDTH ){            
-            monster[i].GoLeft();
-        }
+            if (monster[i].getX() < 0) {
+
+                monster[i].GoRight();
             }
-        
-  
+
+            if (monster[i].getX() > MyGdxGame.WIDTH) {
+                monster[i].GoLeft();
+            }
+        }
 
         System.out.println(monkey.getX());
         for (int i = 0; i < jumppad.length; i++) {
@@ -139,6 +150,7 @@ public class PlayState extends State {
                 System.out.println("Bouncing");
             }
         }
+        
         for (int i = 0; i < jumppad.length; i++) {
             if (getCameraY() - MyGdxGame.HEIGHT / 2 > jumppad[i].getY() + jumppad[i].getHeight()) {
                 float x = jumppad[i].getY() + 250 * jumppad.length;
@@ -146,7 +158,7 @@ public class PlayState extends State {
                 System.out.println("Jumppad Changed");
             }
         }
-        
+
         for (int i = 0; i < monster.length; i++) {
             if (getCameraY() - MyGdxGame.HEIGHT / 2 > monster[i].getY() + monster[i].getHeight()) {
                 float x = monster[i].getY() + 1000 * monster.length;
