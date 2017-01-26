@@ -39,7 +39,7 @@ public class Monster {
      * makes monster move left
      */
         public void GoLeft(){
-            velocity = -100;
+            velocity = -240;
            
         }
         /**
@@ -47,7 +47,7 @@ public class Monster {
          */
         
         public void GoRight(){
-            velocity = 100;
+            velocity = 240;
            
         }
         
