@@ -16,7 +16,7 @@ import com.mygdx.game.MyGdxGame;
 
 /**
  *
- * @author preej0747
+ * @author farrb0382
  */
 public class menuState extends State {
 
@@ -30,12 +30,15 @@ public class menuState extends State {
     private int highScore;
 
     public menuState(StateManager gsm) {
+        
         //retrieve statemanager
         super(gsm);
+        
         //create button textures
         background = new Texture("ms2.jpg");
         button = new Texture("playbtn.png");
         creditbutton = new Texture("credit.png");
+        
         //get button sound and background music
         playGame = Gdx.audio.newSound(Gdx.files.internal("pg.mp3"));
 
@@ -44,10 +47,11 @@ public class menuState extends State {
         music.setVolume(0.1f);
 
         music = Gdx.audio.newMusic(Gdx.files.internal("Theme.mp3"));
+        
         //play music
-
         music.play();
         music.setVolume(0.1f);
+        
         //set camera
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
@@ -70,7 +74,7 @@ public class menuState extends State {
         batch.draw(background, 0, 0, getViewWidth(), getViewHeight());
         batch.draw(button, getViewWidth() / 2 - button.getWidth() / 2, getViewHeight() / 2);
         batch.draw(creditbutton, getViewWidth() / 2 - creditbutton.getWidth() / 2, getViewHeight() / 2 - 200);
-        font.draw(batch, "" + highScore, getViewWidth() / 2, getViewHeight() - 100);
+        font.draw(batch, "Highscore: " + highScore, getViewWidth() / 2 - 35, getViewHeight() - 200);
         batch.end();
     }
 

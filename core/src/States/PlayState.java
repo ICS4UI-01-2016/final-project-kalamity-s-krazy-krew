@@ -15,8 +15,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Monkey;
 import com.mygdx.game.Monster;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.Pad;
-import com.mygdx.game.SuperJumpPad;
 
 import com.mygdx.game.jumpPad;
 
@@ -28,7 +26,7 @@ public class PlayState extends State {
     //instance variables
 
     private Monkey monkey;
-    private Pad[] pad;
+    private jumpPad[] jumppad;
     private Monster[] monster;
     private Texture space;
     private Music music;
@@ -65,17 +63,17 @@ public class PlayState extends State {
         highScore = pref.getInteger("highScore", 0);
         font = new BitmapFont();    // default 15pt Arial Font 
 
-        //create pad array
-        pad = new Pad[10];
-        for (int i = 0; i < pad.length; i++) {
-            //make first 9 regular jumppads
-            if (i < 9) {
-                pad[i] = new jumpPad(-100 + 250 * i);
-            } else {
-                //make last one a superjumppad
-                pad[i] = new SuperJumpPad(-100 + 250 * i);
+        //create jumppad array
+        jumppad = new jumpPad[10];
+        for (int i = 0; i < jumppad.length; i++) {
+            //make first 9 regular jumpjumppads
+           // if (i < 9) {
+                jumppad[i] = new jumpPad(-100 + 250 * i);
+            //} else {
+                //make last one a superjumpjumppad
+              //  jumppad[i] = new SuperJumpPad(-100 + 250 * i);
             }
-        }
+        //}
 
         //create array of 2 monsters and set them 1000 pixels apart
         monster = new Monster[2];
@@ -83,8 +81,8 @@ public class PlayState extends State {
             monster[i] = new Monster(950 + 1000 * i);
         }
 
-        //make monkey spawn on top of first jumppad
-        monkey.setX(pad[0].getX());
+        //make monkey spawn on top of first jumpjumppad
+        monkey.setX(jumppad[0].getX());
 
     }
 
@@ -107,8 +105,8 @@ public class PlayState extends State {
         // draw the monkey
         monkey.render(batch);
 
-        for (int i = 0; i < pad.length; i++) {
-            pad[i].render(batch);
+        for (int i = 0; i < jumppad.length; i++) {
+            jumppad[i].render(batch);
         }
 
         for (int i = 0; i < monster.length; i++) {
@@ -141,9 +139,9 @@ public class PlayState extends State {
             //update the monkets position
             monkey.update(deltaTime);
 
-            //update every pad
-//        for(int i = 0; i < pad.length; i ++){
-//            pad[i].update();
+            //update every jumppad
+//        for(int i = 0; i < jumppad.length; i ++){
+//            jumppad[i].update();
 //        }
 
             //update both monsters
@@ -158,7 +156,7 @@ public class PlayState extends State {
             }
             //move the camera
             moveCameraY(CamY);
-
+            
             //make game conditions
             StateManager gsm = getStateManager();
             if (monkey.getY() + monkey.getHeight() <= getCameraY() - MyGdxGame.HEIGHT / 2) {
@@ -201,9 +199,9 @@ public class PlayState extends State {
 
 
 
-            for (int i = 0; i < pad.length; i++) {
-                //if monkey is falling and on top of jumppad and touching the jumppad
-                if (monkey.Falling() == true && monkey.topOfJumpad(pad[i]) == true && monkey.collides(pad[i]) == true) {
+            for (int i = 0; i < jumppad.length; i++) {
+                //if monkey is falling and on top of jumpjumppad and touching the jumpjumppad
+                if (monkey.Falling() == true && monkey.topOfJumpPad(jumppad[i]) == true && monkey.collides(jumppad[i]) == true) {
                     //bounce and play sound effect
                     monkey.bounce();
                     bounce.play(0.05f);
@@ -215,19 +213,19 @@ public class PlayState extends State {
                 }
             }
 
-            for (int i = 0; i < pad.length; i++) {
-                //once a pad moves off the screen
-                if (getCameraY() - MyGdxGame.HEIGHT / 2 > pad[i].getY() + pad[i].getHeight()) {
+            for (int i = 0; i < jumppad.length; i++) {
+                //once a jumppad moves off the screen
+                if (getCameraY() - MyGdxGame.HEIGHT / 2 > jumppad[i].getY() + jumppad[i].getHeight()) {
                     System.out.println("MOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOVING");
-                    //set float x to 250 above the highestpad
-                    float x = pad[i].getY() + 250 * pad.length;
+                    //set float x to 250 above the highestjumppad
+                    float x = jumppad[i].getY() + 250 * jumppad.length;
                     //set the y value to the float x
-                    pad[i].setY(x);
+                    jumppad[i].setY(x);
                     
                     //add to the score
                     score++;
 
-                    System.out.println("NEW Y VALUE:                                                           " + pad[i].getY());
+                    System.out.println("NEW Y VALUE:                                                           " + jumppad[i].getY());
                 }
 
             }

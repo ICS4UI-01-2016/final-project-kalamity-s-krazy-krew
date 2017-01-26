@@ -59,11 +59,11 @@ public class Monkey {
     }
     
     /**
-     *  is there a collision with pad
+     *  is there a collision with jumppad
      * @param i
      * @return true/false
      */
-    public boolean collides(Pad i) {
+    public boolean collides(jumpPad i) {
         if (hitbox.overlaps(i.getBounds())) {
 //            System.out.println("hitting");
             return true;
@@ -86,11 +86,11 @@ public class Monkey {
     }
 
         /**
-         * is monkey above 3/4 through the pad
+         * is monkey above 3/4 through the jumppad
          * @param i
          * @return true/false
          */
-    public boolean topOfJumpad(Pad i) {
+    public boolean topOfJumpPad(jumpPad i) {
         if (position.y >= i.throughJumpPad()){
 //            System.out.println("OnTop");
             return true;            
