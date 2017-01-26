@@ -9,7 +9,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -49,12 +48,8 @@ public class PlayState extends State {
         //search for music file and play
         music = Gdx.audio.newMusic(Gdx.files.internal("Dk.mp3"));
         music.play();
-
-        music.setVolume(0.1f);       
-
         music.setVolume(0.1f);    
         //search for bounce sound effect file
-
         bounce = Gdx.audio.newSound(Gdx.files.internal("Bounce.mp3"));
         monkey = new Monkey(0, 200);
         space = new Texture("space.jpg");
@@ -63,16 +58,9 @@ public class PlayState extends State {
         //move the camera
         moveCameraY(CamY);
 
-
-        Preferences pref = Gdx.app.getPreferences("highscore");
-        highScore = pref.getInteger("highScore", 0);
-        font = new BitmapFont();
-        font.setColor(Color.GREEN);// default 15pt Arial Font 
-
 //        Preferences pref = Gdx.app.getPreferences("highscore");
 //        highScore = pref.getInteger("highScore", 0);
         font = new BitmapFont();    // default 15pt Arial Font 
-
 
        //create pad array
        pad = new Pad[10];
@@ -137,11 +125,7 @@ public class PlayState extends State {
      */
     @Override
     public void update(float deltaTime) {
-
-        
-
         //if monkey is off the left side of the screen, move to the right
-
         if (monkey.getX() - monkey.getWidth() > MyGdxGame.WIDTH) {
 //            System.out.println("to left");
             monkey.setX(-128);
@@ -179,24 +163,16 @@ public class PlayState extends State {
             // end the game        
             // pop off the game screen to go to menu
             gsm.push(new DeathState(gsm));
-
-            System.out.println("poppin");
-
             //pause music
-
             music.pause();
         }
         
         //if monkey hits any of the monsters
         for (int i = 0; i < monster.length; i++) {
              if (monkey.collidesMonster(monster[i]) == true){
-
-                 music.pause();
-
                  //pause music
                  music.pause();
                  //load death screen
-
             gsm.push(new DeathState(gsm));
         }
             }      
@@ -233,14 +209,6 @@ public class PlayState extends State {
             }
         }
         
-
-        for (int i = 0; i < jumppad.length; i++) {
-            if (getCameraY() - MyGdxGame.HEIGHT / 2 > jumppad[i].getY() + jumppad[i].getHeight()) {
-                float x = jumppad[i].getY() + 250 * jumppad.length;
-                jumppad[i].setY(x);
-                score++;
-                System.out.println("Jumppad Changed");
-
         for (int i = 0; i < pad.length; i++) {
             //once a pad moves off the screen
             if (getCameraY() - MyGdxGame.HEIGHT / 2 > pad[i].getY() + pad[i].getHeight()) {
@@ -251,8 +219,7 @@ public class PlayState extends State {
                 //add to the score
                 score++;
                 
-                System.out.println("NEW Y VALUE);                                                           " + pad[i].getY());
-
+                System.out.println("NEW Y VALUE:                                                           " + pad[i].getY());
             }
           
         }
@@ -286,7 +253,4 @@ public class PlayState extends State {
     @Override
     public void dispose() {
     }
-}
-
-}
 }

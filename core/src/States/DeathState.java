@@ -27,7 +27,14 @@ public class DeathState extends State {
         //call statemanager
         super(gsm);
 
+
         oh = Gdx.audio.newSound(Gdx.files.internal("Supa.mp3"));
+
+        //create and play soundclip
+        oh = Gdx.audio.newSound(Gdx.files.internal("Supa.mp3"));
+        oh.play();
+        //retreive pictures
+
 
         //create and play soundclip
         oh = Gdx.audio.newSound(Gdx.files.internal("Supa.mp3"));
@@ -57,8 +64,10 @@ public class DeathState extends State {
 
     @Override
     public void update(float deltaTime) {
+       
+     oh.play();
 
-        oh.play();
+
 
 
 
