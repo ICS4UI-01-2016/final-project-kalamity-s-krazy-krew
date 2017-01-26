@@ -36,7 +36,7 @@ public class menuState extends State {
         creditbutton = new Texture("credit.png");
         playGame = Gdx.audio.newSound(Gdx.files.internal("pg.mp3"));
         music = Gdx.audio.newMusic(Gdx.files.internal("Theme.mp3"));      
-        music.setLooping(true);
+        music.play();
         music.setVolume(0.1f);
         music.play();
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
@@ -87,7 +87,7 @@ public class menuState extends State {
                     && touch.y > buttonY2 && touch.y < buttonY2 + creditbutton.getHeight()) {
                 StateManager gsm = getStateManager();
                 gsm.push(new CreditState(gsm));
-                music.setLooping(false);
+                
             }
         }
     }
