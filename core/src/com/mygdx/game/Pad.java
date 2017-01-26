@@ -20,14 +20,17 @@ public abstract class Pad {
         //spawn pad at random x, and designated Y
         position = new Vector2((int) (Math.random() * (481)), y);
         //set bounds around pad
+        pad = new Texture("JumpPad3.png");
         bounds = new Rectangle(position.x, position.y, 127, 37);
         System.out.println(" pad x:                                    " + position.x);
         System.out.println(" pad y:                                    " + position.y);
     }
 
     //abstract methods needed 
-    public abstract void render(SpriteBatch batch);
-
+   // public abstract void render(SpriteBatch batch);
+    public void render(SpriteBatch batch) {
+        batch.draw(pad, bounds.x, bounds.y, pad.getWidth(), pad.getHeight());
+    }
     public abstract void update();
 
     public abstract void dispose();
@@ -83,6 +86,7 @@ public abstract class Pad {
      * @param y
      */
     public void setY(float y) {
+        System.out.println("Setting Y");
         position.y = y;
         float x = (int) (Math.random() * (481));
         position.x = x;

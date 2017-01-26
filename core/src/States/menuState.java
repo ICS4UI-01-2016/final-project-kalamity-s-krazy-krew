@@ -27,8 +27,8 @@ public class menuState extends State {
     private Sound playGame;
     private BitmapFont font;
     private Texture creditbutton;
+    private int highScore;
 
-    
     public menuState(StateManager gsm) {
         //retrieve statemanager
         super(gsm);
@@ -39,25 +39,29 @@ public class menuState extends State {
         //get button sound and background music
         playGame = Gdx.audio.newSound(Gdx.files.internal("pg.mp3"));
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("Theme.mp3"));      
+        music = Gdx.audio.newMusic(Gdx.files.internal("Theme.mp3"));
         music.play();
         music.setVolume(0.1f);
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("Theme.mp3"));  
+        music = Gdx.audio.newMusic(Gdx.files.internal("Theme.mp3"));
         //play music
 
         music.play();
         music.setVolume(0.1f);
-       //set camera
+        //set camera
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
 
+        Preferences pref = Gdx.app.getPreferences("highscore");
+        highScore = pref.getInteger("highScore", 0);
+        font = new BitmapFont();    // default 15pt Arial Font 
 
     }
 
     /**
      * Render pictures
-     * @param batch 
+     *
+     * @param batch
      */
     @Override
     public void render(SpriteBatch batch) {
@@ -66,15 +70,21 @@ public class menuState extends State {
         batch.draw(background, 0, 0, getViewWidth(), getViewHeight());
         batch.draw(button, getViewWidth() / 2 - button.getWidth() / 2, getViewHeight() / 2);
         batch.draw(creditbutton, getViewWidth() / 2 - creditbutton.getWidth() / 2, getViewHeight() / 2 - 200);
+        font.draw(batch, "" + highScore, getViewWidth() / 2, getViewHeight() - 100);
         batch.end();
     }
 
+    public void updateScore(){
+        Preferences pref = Gdx.app.getPreferences("highscore");
+        highScore = pref.getInteger("highscore", 0);
+    }
+    
     @Override
     public void update(float deltaTime) {
     }
-    
+
     /**
-     * switch to playstate
+     * switch to PlayState or credit state
      */
     @Override
     public void handleInput() {
@@ -85,13 +95,13 @@ public class menuState extends State {
 
             // convert that point to game coordinates 
             unproject(touch);
-            
+
             // Set both buttons x and y positions
             float buttonX = getViewWidth() / 2 - button.getWidth() / 2;
             float buttonY = getViewHeight() / 2;
             float buttonX2 = getViewWidth() / 2 - creditbutton.getWidth() / 2;
             float buttonY2 = getViewHeight() / 2 - 200;
-            
+
             //if button is touched
             if (touch.x > buttonX && touch.x < buttonX + button.getWidth()
                     && touch.y > buttonY && touch.y < buttonY + button.getHeight()) {
@@ -102,14 +112,14 @@ public class menuState extends State {
                 playGame.play(0.1f);
                 music.pause();
             }
-            
+
             //if other button is touched
             if (touch.x > buttonX2 && touch.x < buttonX2 + creditbutton.getWidth()
                     && touch.y > buttonY2 && touch.y < buttonY2 + creditbutton.getHeight()) {
                 StateManager gsm = getStateManager();
                 //move to credit state
                 gsm.push(new CreditState(gsm));
-                
+
             }
         }
     }

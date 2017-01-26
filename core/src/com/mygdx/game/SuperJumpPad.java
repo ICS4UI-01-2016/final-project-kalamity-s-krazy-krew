@@ -20,21 +20,21 @@ public class SuperJumpPad extends Pad{
     public static final float WIDTH = 50;
     private Vector2 position;
     private Rectangle bounds;
-    private Texture jumppad;
+    private Texture pad;
   
 
     //pad constructor
     public SuperJumpPad(float y){
         super(y);
         position = new Vector2(super.getX(), y);
-        jumppad = new Texture("SuperJumpPad.png"); 
-        bounds = new Rectangle(position.x, position.y,  jumppad.getWidth(),jumppad.getHeight());       
+        pad = new Texture("JumpPad3.png"); 
+        bounds = new Rectangle(position.x, position.y,  pad.getWidth(),pad.getHeight());       
     }
 
     //methods needed in order to run the jump pads
     @Override
     public void render(SpriteBatch batch) {
-        batch.draw(jumppad, bounds.x, bounds.y,  jumppad.getWidth(),jumppad.getHeight());
+        batch.draw(pad, bounds.x, bounds.y,  pad.getWidth(),pad.getHeight());
     }
 //    
 //    public Rectangle getBounds(){
@@ -69,7 +69,7 @@ public class SuperJumpPad extends Pad{
  */
     @Override
     public void dispose() {
-        jumppad.dispose();
+        pad.dispose();
     }
 /**
  * update jumppad position

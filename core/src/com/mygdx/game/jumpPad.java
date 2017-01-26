@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  *
- * @author preej0747
+ * @author farrb0382
  */
 public class jumpPad extends Pad {
 
@@ -20,7 +20,7 @@ public class jumpPad extends Pad {
     public static final float WIDTH = 50;
     private Vector2 position;
     private Rectangle bounds;
-    private Texture jumppad;
+    private Texture pad;
 
     //pad constructor
     public jumpPad(float y) {
@@ -29,9 +29,9 @@ public class jumpPad extends Pad {
         //set position
         position = new Vector2(super.getX(), y);
         //set texture
-        jumppad = new Texture("JumpPad3.png");
+        pad = new Texture("JumpPad3.png");
         //set bounds
-        bounds = new Rectangle(position.x, position.y, jumppad.getWidth(), jumppad.getHeight());
+        bounds = new Rectangle(position.x, position.y, pad.getWidth(), pad.getHeight());
     }
 
 //    //methods needed in order to run the jump pads
@@ -77,7 +77,7 @@ public class jumpPad extends Pad {
      * @param batch 
      */
     public void render(SpriteBatch batch) {
-        batch.draw(jumppad, bounds.x, bounds.y, jumppad.getWidth(), jumppad.getHeight());
+        batch.draw(pad, bounds.x, bounds.y, pad.getWidth(), pad.getHeight());
     }
 
     @Override

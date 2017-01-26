@@ -40,7 +40,7 @@ public class Monster {
      */
         public void GoLeft(){
             velocity = -100;
-            System.out.println("left");
+           
         }
         /**
          * make monster move right
@@ -48,7 +48,7 @@ public class Monster {
         
         public void GoRight(){
             velocity = 100;
-            System.out.println("right");
+           
         }
         
         /**

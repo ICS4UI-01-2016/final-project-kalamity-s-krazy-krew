@@ -27,7 +27,7 @@ public class Monkey {
     public Monkey(float x, float y) {
         
         position = new Vector3(x, y, 0);
-        velocity = new Vector3(0, movement, 0);
+        velocity = new Vector3(0, movement, 0 - 100);
         monkeypic = new Texture("CharacterFinished2.png");
         hitbox = new Rectangle(position.x, position.y, monkeypic.getWidth(), monkeypic.getHeight());
         
@@ -41,6 +41,10 @@ public class Monkey {
 //        System.out.println("bounce");
     }
 
+    public void superBounce(){
+        velocity.y = 1500;
+    }
+    
     /**
      * decreases x velocity
      */
