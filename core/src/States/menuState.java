@@ -73,7 +73,7 @@ public class menuState extends State {
         batch.draw(background, 0, 0, getViewWidth(), getViewHeight());
         batch.draw(button, getViewWidth() / 2 - button.getWidth() / 2, getViewHeight() / 2);
         batch.draw(creditbutton, getViewWidth() / 2 - creditbutton.getWidth() / 2, getViewHeight() / 2 - 200);
-        font.draw(batch, "Highscore: " + highScore, getViewWidth() / 2 - 35, getViewHeight() - 200);
+//        font.draw(batch, "Highscore: " + highScore, getViewWidth() / 2 - 35, getViewHeight() - 200);
         batch.end();
     }
 
