@@ -32,15 +32,9 @@ public class DeathState extends State {
 
         //create and play soundclip
         oh = Gdx.audio.newSound(Gdx.files.internal("Supa.mp3"));
-        oh.play();
+        oh.play(0.1f);
+        
         //retreive pictures
-
-
-        //create and play soundclip
-        oh = Gdx.audio.newSound(Gdx.files.internal("Supa.mp3"));
-        oh.play();
-        //retreive pictures
-
         death = new Texture("death.png");
         menu = new Texture("menu.png");
         //set camera view
@@ -65,12 +59,6 @@ public class DeathState extends State {
     @Override
     public void update(float deltaTime) {
        
-     oh.play();
-
-
-
-
-
     }
 
     /**

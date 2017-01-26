@@ -46,7 +46,6 @@ public class menuState extends State {
         music.play();
         music.setVolume(0.1f);
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("Theme.mp3"));
         
         //play music
         music.play();
@@ -112,9 +111,10 @@ public class menuState extends State {
                 StateManager gsm = getStateManager();
                 //move to playstate
                 gsm.push(new PlayState(gsm));
+                music.pause();
                 //play sound and pause menu music
                 playGame.play(0.1f);
-                music.pause();
+                
             }
 
             //if other button is touched
