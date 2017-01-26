@@ -20,7 +20,7 @@ import com.mygdx.game.MyGdxGame;
  */
 public class menuState extends State {
 
-    //private textures
+    //create Textures, sounds and font
     private Texture background;
     private Texture button;
     private Music music;
@@ -28,23 +28,31 @@ public class menuState extends State {
     private BitmapFont font;
     private Texture creditbutton;
 
-    //menu state constructor
+    
     public menuState(StateManager gsm) {
+        //retrieve statemanager
         super(gsm);
+        //create button textures
         background = new Texture("ms2.jpg");
         button = new Texture("playbtn.png");
         creditbutton = new Texture("credit.png");
+        //get button sound and background music
         playGame = Gdx.audio.newSound(Gdx.files.internal("pg.mp3"));
-        music = Gdx.audio.newMusic(Gdx.files.internal("Theme.mp3"));      
+        music = Gdx.audio.newMusic(Gdx.files.internal("Theme.mp3"));  
+        //play music
         music.play();
         music.setVolume(0.1f);
-        music.play();
+       //set camera
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
 
 
     }
 
+    /**
+     * Render pictures
+     * @param batch 
+     */
     @Override
     public void render(SpriteBatch batch) {
         batch.setProjectionMatrix(getCombinedCamera());
@@ -58,7 +66,10 @@ public class menuState extends State {
     @Override
     public void update(float deltaTime) {
     }
-
+    
+    /**
+     * switch to playstate
+     */
     @Override
     public void handleInput() {
         if (Gdx.input.justTouched()) {
@@ -69,29 +80,37 @@ public class menuState extends State {
             // convert that point to game coordinates 
             unproject(touch);
             
-            // check if the button is pressed
+            // Set both buttons x and y positions
             float buttonX = getViewWidth() / 2 - button.getWidth() / 2;
             float buttonY = getViewHeight() / 2;
             float buttonX2 = getViewWidth() / 2 - creditbutton.getWidth() / 2;
             float buttonY2 = getViewHeight() / 2 - 200;
-
+            
+            //if button is touched
             if (touch.x > buttonX && touch.x < buttonX + button.getWidth()
                     && touch.y > buttonY && touch.y < buttonY + button.getHeight()) {
                 StateManager gsm = getStateManager();
+                //move to playstate
                 gsm.push(new PlayState(gsm));
+                //play sound and pause menu music
                 playGame.play(0.1f);
                 music.pause();
             }
             
+            //if other button is touched
             if (touch.x > buttonX2 && touch.x < buttonX2 + creditbutton.getWidth()
                     && touch.y > buttonY2 && touch.y < buttonY2 + creditbutton.getHeight()) {
                 StateManager gsm = getStateManager();
+                //move to credit state
                 gsm.push(new CreditState(gsm));
                 
             }
         }
     }
 
+    /**
+     * dispose game components
+     */
     @Override
     public void dispose() {
         background.dispose();
