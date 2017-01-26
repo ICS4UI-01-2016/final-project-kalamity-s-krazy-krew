@@ -17,22 +17,35 @@ import com.mygdx.game.MyGdxGame;
  */
 public class DeathState extends State {
 
+    //create variables, textures, and sounds
     private Texture death;
     private Texture menu;
     private Sound oh;
     private float CamY;
 
     public DeathState(StateManager gsm) {
-
+        //call statemanager
         super(gsm);
+
         oh = Gdx.audio.newSound(Gdx.files.internal("Supa.mp3"));
+
+        //create and play soundclip
+        oh = Gdx.audio.newSound(Gdx.files.internal("Supa.mp3"));
+        oh.play();
+        //retreive pictures
+
         death = new Texture("death.png");
         menu = new Texture("menu.png");
+        //set camera view
         setCameraView(MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
 
     }
 
+    /**
+     *draw pictures
+     * @param batch
+     */
     @Override
     public void render(SpriteBatch batch) {
         batch.setProjectionMatrix(getCombinedCamera());
@@ -44,9 +57,16 @@ public class DeathState extends State {
 
     @Override
     public void update(float deltaTime) {
+
         oh.play();
+
+
+
     }
 
+    /**
+     * send back to menu state
+     */
     @Override
     public void handleInput() {
 
@@ -56,9 +76,12 @@ public class DeathState extends State {
 
             unproject(touch);
 
+            //set x value of button
             float buttonX = getViewWidth() / 2 - menu.getWidth() / 2;
+            //set y value of button
             float buttonY = getViewHeight() / 2 - 100;
 
+            //if button is clicked
             if (touch.x > buttonX && touch.x < buttonX + menu.getWidth()
                     && touch.y > buttonY && touch.y < buttonY + menu.getHeight()) {
 
@@ -67,7 +90,9 @@ public class DeathState extends State {
             }
         }
     }
-
+/**
+ * remove pictures
+ */
     @Override
     public void dispose() {
         death.dispose();
